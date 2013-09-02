@@ -1,0 +1,25 @@
+C:\Users\Newtech\AppData\Local\Temporary Projects\ASDBlackV1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Newtech\AppData\Local\Temporary Projects\ASDBlackV1\obj\x86\Debug\ASDBlackV1.Form1.resources
+C:\Users\Newtech\AppData\Local\Temporary Projects\ASDBlackV1\obj\x86\Debug\ASDBlackV1.Properties.Resources.resources
+C:\Users\Newtech\AppData\Local\Temporary Projects\ASDBlackV1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Newtech\AppData\Local\Temporary Projects\ASDBlackV1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Newtech\AppData\Local\Temporary Projects\ASDBlackV1\bin\Debug\ASDBlackV1.exe
+C:\Users\Newtech\AppData\Local\Temporary Projects\ASDBlackV1\bin\Debug\ASDBlackV1.pdb
+C:\Users\Newtech\AppData\Local\Temporary Projects\ASDBlackV1\obj\x86\Debug\ASDBlackV1.exe
+C:\Users\Newtech\AppData\Local\Temporary Projects\ASDBlackV1\obj\x86\Debug\ASDBlackV1.pdb
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Debug\ASDBlackV1.exe
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Debug\ASDBlackV1.pdb
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\bin\Debug\ASDBlackV1.exe
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\bin\Debug\ASDBlackV1.pdb
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Debug\ASDBlackV1.Form1.resources
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Debug\ASDBlackV1.Properties.Resources.resources
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\bin\Debug\Cars.mdb
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\bin\Debug\ASDBlackV1.exe.config
+C:\ASD\ASDBlackV1\bin\Debug\ASDBlackV1.exe.config
+C:\ASD\ASDBlackV1\obj\x86\Debug\ASDBlackV1.exe
+C:\ASD\ASDBlackV1\obj\x86\Debug\ASDBlackV1.Form1.resources
+C:\ASD\ASDBlackV1\obj\x86\Debug\ASDBlackV1.Properties.Resources.resources
+C:\ASD\ASDBlackV1\obj\x86\Debug\ASDBlackV1.csproj.GenerateResource.Cache

@@ -1,0 +1,11 @@
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Release\ASDBlackV1.Form1.resources
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Release\ASDBlackV1.Properties.Resources.resources
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\bin\Release\Cars.mdb
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\bin\Release\ASDBlackV1.exe.config
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\bin\Release\ASDBlackV1.exe
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\bin\Release\ASDBlackV1.pdb
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Release\ASDBlackV1.exe
+C:\Users\Newtech\documents\visual studio 2010\Projects\ASDBlackV1\ASDBlackV1\obj\x86\Release\ASDBlackV1.pdb
