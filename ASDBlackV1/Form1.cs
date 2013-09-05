@@ -29,36 +29,42 @@ namespace ASDBlackV1
         bool hata = false;
         int index = 0;
         int sayac;
+        int max;
         string kok;
+        string markaid;
+        string modelid;
         string resim_adi;
+        string resim_title;
         string[] images;
 
         public void DataRead()
         {
-            string connectionString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD/Cars.mdb";
-            OleDbConnection conn = new OleDbConnection(connectionString);
-            conn.Open();
+            string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD/Cars.mdb";
+            string query = "SELECT BrandNo, BrandName FROM Cars";
+            OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
+            DataTable source = new DataTable();
+            dAdapter.Fill(source);
+            comboBox1.DataSource = source;
+            comboBox1.ValueMember = "BrandNo";
+            comboBox1.DisplayMember = "BrandName";
 
+            comboBox1.SelectedIndexChanged += new System.EventHandler(comboBox1_SelectedIndexChanged);
+        }
 
-            string sql = "SELECT * FROM Cars";
-            OleDbCommand cmd = new OleDbCommand(sql, conn);
-            OleDbDataAdapter dAdapter = new OleDbDataAdapter("select * from Models", conn);
-            OleDbDataReader reader = cmd.ExecuteReader();
+        private void comboBox1_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            markaid = comboBox1.SelectedValue.ToString();
 
-            DataTable dataTable = new DataTable();
-            DataSet ds = new DataSet();
+            string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD/Cars.mdb";
+            string query = "SELECT ModelName FROM Models WHERE BrandNo = " + markaid;
+            OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
+            DataTable source = new DataTable();
+            dAdapter.Fill(source);
+            comboBox2.DataSource = source;
+            comboBox2.ValueMember = "ModelName";
+            comboBox2.DisplayMember = "ModelName";
 
-            
-
-            while (reader.Read())
-            {
-                Console.Write(reader.GetString(1));
-            }
-
-            reader.Close();
-            conn.Close();
-
-
+            modelid = comboBox2.SelectedValue.ToString();
         }
 
 
@@ -68,12 +74,12 @@ namespace ASDBlackV1
             BindDirectoryToTreeView("C:/ASD/");
             treeView1.NodeMouseClick += new TreeNodeMouseClickEventHandler(treeView1_NodeMouseClick);
             DataRead();
-            /*
-            this.brandNameComboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            this.brandNameComboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
+            label10.Text = "Program by Barış Parlan - bparlan@gmail.com // Alım Satım Dergisi © 2013";
             
-            this.modelNameComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            this.modelNameComboBox.AutoCompleteSource = AutoCompleteSource.ListItems;*/
+            comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comboBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
 
 
         }
@@ -87,17 +93,23 @@ namespace ASDBlackV1
 
         public void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            index = 0;
             if (e.Node.Text != "ASD")
             {
+                label11.Text = e.Node.Text;
                 images = (string[])Directory.GetFiles("C:/ASD/" + e.Node.Text + "/", "*.jpg");
 
                 pictureBox1.Image = new Bitmap(images[index]);
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 sayac = index + 1;
-                label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
+                max = images.Length;
+                label1.Text = "Index: " + sayac.ToString("00") + " / " + max.ToString("00");
                 kok = "C:/ASD/" + e.Node.Text + "/";
+              
                 resim_adi = images[index].Replace(kok, "");
+                resim_title = resim_adi.Remove((resim_adi.Length-4), 4);
                 label2.Text = resim_adi;
+                label10.Text = resim_title + " düzenleniyor.";
             }
         }
         
@@ -124,8 +136,8 @@ namespace ASDBlackV1
             
             foreach (var fi in dir.GetFiles().OrderBy(c => c.Name))
             {
-                var fileNode = new TreeNode(fi.Name);
-                node.Nodes.Add(fileNode);
+                //var fileNode = new TreeNode(fi.Name);
+                //node.Nodes.Add(fileNode);
             }
         }
 
@@ -134,15 +146,15 @@ namespace ASDBlackV1
         //Kaydet
         private void button1_Click(object sender, EventArgs e)
         {
-            string dosya_adi = "C:\\test";
+            string dosya_adi = kok + resim_title;
             string icerik;
             int satir_sayisi = 0;
 
-            dosya_adi += "." + brandNameComboBox1.Text;
+            dosya_adi += "." + comboBox1.Text;
 
             icerik = textBox1.Text + " Model";
-            icerik += " " + brandNameComboBox1.Text;
-            icerik += " " + modelNameComboBox.Text + Environment.NewLine;
+            icerik += " " + comboBox1.Text;
+            icerik += " " + comboBox2.Text + Environment.NewLine;
             satir_sayisi++;
 
 /*
@@ -354,7 +366,8 @@ namespace ASDBlackV1
                 writer.WriteLine(icerik);
                 writer.Close();
 
-                MessageBox.Show(icerik);
+
+                label10.Text = resim_adi + " kaydedildi.";
             }
 
             hata = false;
@@ -386,25 +399,42 @@ namespace ASDBlackV1
 
         private void btn_ileri_Click(object sender, EventArgs e)
         {
-            index++;
-            pictureBox1.Image = new Bitmap(images[index]);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            sayac = index + 1;
-            label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
-            resim_adi = images[index].Replace(kok, "");
-            label2.Text = resim_adi;
+            if (sayac < max)
+            {
+                index++;
+                pictureBox1.Image = new Bitmap(images[index]);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                sayac++;
+                label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
+                resim_adi = images[index].Replace(kok, "");
+                resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
+                label2.Text = resim_adi;
+                label10.Text = resim_title + " düzenleniyor.";
+            }
+            else
+            {
+                label10.Text = "Dosyada başka araç yok";
+            }
         }
 
         private void btn_geri_Click(object sender, EventArgs e)
         {
-            index--;
-            pictureBox1.Image = new Bitmap(images[index]);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            sayac = index + 1;
-            label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
-            resim_adi = images[index].Replace(kok, "");
-            label2.Text = resim_adi;
-              
+            if (sayac > 1)
+            {
+                index--;
+                pictureBox1.Image = new Bitmap(images[index]);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                sayac--;
+                label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
+                resim_adi = images[index].Replace(kok, "");
+                resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
+                label2.Text = resim_adi;
+                label10.Text = resim_title + " düzenleniyor.";
+            }
+            else
+            {
+                label10.Text = "İlk resim gösterilmekte.";
+            }
         }
 
         private void checkBox8_CheckedChanged(object sender, EventArgs e)
@@ -424,6 +454,45 @@ namespace ASDBlackV1
 
         private void modelNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (sayac-4 > 1)
+            {
+                index -= 5;
+                pictureBox1.Image = new Bitmap(images[index]);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                sayac -= 5;
+                label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
+                resim_adi = images[index].Replace(kok, "");
+                resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
+                label2.Text = resim_adi;
+                label10.Text = resim_title + " düzenleniyor.";
+            }
+            else
+                label10.Text = "5 Resim öncesi bulunmamakta.";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (sayac+4 < max)
+            {
+                index += 5;
+                pictureBox1.Image = new Bitmap(images[index]);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                sayac += 5;
+                label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
+
+                resim_adi = images[index].Replace(kok, "");
+                resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
+                label2.Text = resim_adi;
+                label10.Text = resim_title + " düzenleniyor.";
+            }
+            else
+            {
+                label10.Text = "5 Resim sonrasında araç yok.";
+            }
         }
     }
 

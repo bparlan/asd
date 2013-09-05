@@ -80,8 +80,6 @@
             this.modelsTableAdapter = new ASDBlackV1.CarsDataSetTableAdapters.ModelsTableAdapter();
             this.modelsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.companiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.brandNameComboBox1 = new System.Windows.Forms.ComboBox();
-            this.modelNameComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.companyNameComboBox = new System.Windows.Forms.ComboBox();
@@ -95,6 +93,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_ileri = new System.Windows.Forms.Button();
             this.btn_geri = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             brandNameLabel1 = new System.Windows.Forms.Label();
             modelNameLabel = new System.Windows.Forms.Label();
             companyNameLabel = new System.Windows.Forms.Label();
@@ -138,9 +143,9 @@
             // 
             // kaydet
             // 
-            this.kaydet.Location = new System.Drawing.Point(151, 280);
+            this.kaydet.Location = new System.Drawing.Point(151, 296);
             this.kaydet.Name = "kaydet";
-            this.kaydet.Size = new System.Drawing.Size(122, 23);
+            this.kaydet.Size = new System.Drawing.Size(192, 23);
             this.kaydet.TabIndex = 1;
             this.kaydet.Text = "Kaydet";
             this.kaydet.UseVisualStyleBackColor = true;
@@ -330,7 +335,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(154, 207);
+            this.label1.Location = new System.Drawing.Point(154, 224);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 23;
@@ -338,7 +343,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(154, 230);
+            this.label2.Location = new System.Drawing.Point(154, 247);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 24;
@@ -579,33 +584,6 @@
             this.companiesBindingSource.DataMember = "Companies";
             this.companiesBindingSource.DataSource = this.carsDataSet;
             // 
-            // brandNameComboBox1
-            // 
-            this.brandNameComboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.carsBindingSource, "BrandName", true));
-            this.brandNameComboBox1.DataSource = this.carsBindingSource;
-            this.brandNameComboBox1.DisplayMember = "BrandName";
-            this.brandNameComboBox1.FormattingEnabled = true;
-            this.brandNameComboBox1.Location = new System.Drawing.Point(389, 117);
-            this.brandNameComboBox1.Name = "brandNameComboBox1";
-            this.brandNameComboBox1.Size = new System.Drawing.Size(131, 21);
-            this.brandNameComboBox1.TabIndex = 45;
-            this.brandNameComboBox1.ValueMember = "BrandNo";
-            this.brandNameComboBox1.SelectedIndexChanged += new System.EventHandler(this.brandNameComboBox1_SelectedIndexChanged);
-            // 
-            // modelNameComboBox
-            // 
-            this.modelNameComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.modelsBindingSource, "ModelName", true));
-            this.modelNameComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.carsBindingSource, "BrandNo", true));
-            this.modelNameComboBox.DataSource = this.modelsBindingSource;
-            this.modelNameComboBox.DisplayMember = "ModelName";
-            this.modelNameComboBox.FormattingEnabled = true;
-            this.modelNameComboBox.Location = new System.Drawing.Point(390, 142);
-            this.modelNameComboBox.Name = "modelNameComboBox";
-            this.modelNameComboBox.Size = new System.Drawing.Size(130, 21);
-            this.modelNameComboBox.TabIndex = 46;
-            this.modelNameComboBox.ValueMember = "BrandNo";
-            this.brandNameComboBox1.SelectedIndexChanged += new System.EventHandler(this.modelNameComboBox_SelectedIndexChanged);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -633,7 +611,7 @@
             this.companyNameComboBox.Location = new System.Drawing.Point(413, 297);
             this.companyNameComboBox.Name = "companyNameComboBox";
             this.companyNameComboBox.Size = new System.Drawing.Size(340, 21);
-            this.companyNameComboBox.TabIndex = 49;
+            this.companyNameComboBox.TabIndex = 68;
             this.companyNameComboBox.ValueMember = "CompanyTel";
             // 
             // companiesBindingSource1
@@ -714,29 +692,97 @@
             // 
             // btn_ileri
             // 
-            this.btn_ileri.Location = new System.Drawing.Point(268, 251);
+            this.btn_ileri.Location = new System.Drawing.Point(300, 267);
             this.btn_ileri.Name = "btn_ileri";
-            this.btn_ileri.Size = new System.Drawing.Size(75, 23);
+            this.btn_ileri.Size = new System.Drawing.Size(43, 23);
             this.btn_ileri.TabIndex = 69;
-            this.btn_ileri.Text = "ileri";
+            this.btn_ileri.Text = ">";
             this.btn_ileri.UseVisualStyleBackColor = true;
             this.btn_ileri.Click += new System.EventHandler(this.btn_ileri_Click);
             // 
             // btn_geri
             // 
-            this.btn_geri.Location = new System.Drawing.Point(150, 251);
+            this.btn_geri.Location = new System.Drawing.Point(150, 267);
             this.btn_geri.Name = "btn_geri";
-            this.btn_geri.Size = new System.Drawing.Size(75, 23);
+            this.btn_geri.Size = new System.Drawing.Size(44, 23);
             this.btn_geri.TabIndex = 70;
-            this.btn_geri.Text = "Geri";
+            this.btn_geri.Text = "<";
             this.btn_geri.UseVisualStyleBackColor = true;
             this.btn_geri.Click += new System.EventHandler(this.btn_geri_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(389, 117);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(131, 21);
+            this.comboBox1.TabIndex = 71;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(389, 142);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(131, 21);
+            this.comboBox2.TabIndex = 72;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(13, 325);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 13);
+            this.label9.TabIndex = 73;
+            this.label9.Text = "Durum:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(53, 324);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 13);
+            this.label10.TabIndex = 74;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(197, 267);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 23);
+            this.button1.TabIndex = 75;
+            this.button1.Text = "<<";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(267, 267);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(30, 23);
+            this.button2.TabIndex = 76;
+            this.button2.Text = ">>";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(154, 201);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(0, 13);
+            this.label11.TabIndex = 77;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 340);
+            this.ClientSize = new System.Drawing.Size(776, 346);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btn_geri);
             this.Controls.Add(this.btn_ileri);
             this.Controls.Add(this.pictureBox1);
@@ -747,9 +793,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(modelNameLabel);
-            this.Controls.Add(this.modelNameComboBox);
             this.Controls.Add(brandNameLabel1);
-            this.Controls.Add(this.brandNameComboBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.checkBox9);
@@ -857,8 +901,6 @@
         private System.Windows.Forms.BindingSource modelsBindingSource;
         private CarsDataSetTableAdapters.CompaniesTableAdapter companiesTableAdapter;
         private System.Windows.Forms.BindingSource companiesBindingSource;
-        private System.Windows.Forms.ComboBox brandNameComboBox1;
-        private System.Windows.Forms.ComboBox modelNameComboBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.ComboBox companyNameComboBox;
@@ -872,6 +914,13 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_ileri;
         private System.Windows.Forms.Button btn_geri;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label11;
     }
 }
 
