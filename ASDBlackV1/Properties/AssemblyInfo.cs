@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ASDBlackV1")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Baris Parlan")]
 [assembly: AssemblyProduct("ASDBlackV1")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
+[assembly: AssemblyCopyright("Copyright © ASD")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

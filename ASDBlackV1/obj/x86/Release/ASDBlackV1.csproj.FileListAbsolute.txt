@@ -22,3 +22,17 @@ C:\ASD\ASDBlackV1\obj\x86\Release\ASDBlackV1.exe.manifest
 C:\ASD\ASDBlackV1\obj\x86\Release\ASDBlackV1.application
 C:\ASD\ASDBlackV1\obj\x86\Release\ASDBlackV1.exe
 C:\ASD\ASDBlackV1\obj\x86\Release\ASDBlackV1.pdb
+C:\ASD_v1\ASDBlackV1\bin\Release\ASDBlackV1.exe.config
+C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.exe
+C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.pdb
+C:\ASD_v1\ASDBlackV1\bin\Release\Cars.mdb
+C:\ASD_v1\ASDBlackV1\bin\Release\ASDBlackV1.exe.manifest
+C:\ASD_v1\ASDBlackV1\bin\Release\ASDBlackV1.application
+C:\ASD_v1\ASDBlackV1\bin\Release\ASDBlackV1.exe
+C:\ASD_v1\ASDBlackV1\bin\Release\ASDBlackV1.pdb
+C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.Form1.resources
+C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.Properties.Resources.resources
+C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.csproj.GenerateResource.Cache
+C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.exe.manifest
+C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.application
+C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.TrustInfo.xml

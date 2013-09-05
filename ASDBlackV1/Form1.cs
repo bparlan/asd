@@ -39,7 +39,7 @@ namespace ASDBlackV1
 
         public void DataRead()
         {
-            string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD/Cars.mdb";
+            string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD_v1/Cars.mdb";
             string query = "SELECT BrandNo, BrandName FROM Cars";
             OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
             DataTable source = new DataTable();
@@ -55,7 +55,7 @@ namespace ASDBlackV1
         {
             markaid = comboBox1.SelectedValue.ToString();
 
-            string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD/Cars.mdb";
+            string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD_v1/Cars.mdb";
             string query = "SELECT ModelName FROM Models WHERE BrandNo = " + markaid;
             OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
             DataTable source = new DataTable();
