@@ -340,9 +340,8 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(154, 230);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 13);
+            this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 24;
-            this.label2.Text = "AlfaRomeo - 156.JPG";
             // 
             // label3
             // 
@@ -512,6 +511,7 @@
             this.checkBox8.TabIndex = 40;
             this.checkBox8.Text = "Full";
             this.checkBox8.UseVisualStyleBackColor = true;
+            this.checkBox8.CheckedChanged += new System.EventHandler(this.checkBox8_CheckedChanged);
             // 
             // checkBox9
             // 
@@ -589,7 +589,8 @@
             this.brandNameComboBox1.Name = "brandNameComboBox1";
             this.brandNameComboBox1.Size = new System.Drawing.Size(131, 21);
             this.brandNameComboBox1.TabIndex = 45;
-            this.brandNameComboBox1.ValueMember = "BrandName";
+            this.brandNameComboBox1.ValueMember = "BrandNo";
+            this.brandNameComboBox1.SelectedIndexChanged += new System.EventHandler(this.brandNameComboBox1_SelectedIndexChanged);
             // 
             // modelNameComboBox
             // 
@@ -603,6 +604,7 @@
             this.modelNameComboBox.Size = new System.Drawing.Size(130, 21);
             this.modelNameComboBox.TabIndex = 46;
             this.modelNameComboBox.ValueMember = "BrandNo";
+            this.brandNameComboBox1.SelectedIndexChanged += new System.EventHandler(this.modelNameComboBox_SelectedIndexChanged);
             // 
             // label8
             // 

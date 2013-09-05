@@ -7,6 +7,9 @@ using System.Linq;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+//DB Addon
+using System.Data.Common;
+using System.Data.OleDb;
 
 
 /* Dosyadan Şirket dosyası seçiliyor.
@@ -25,16 +28,54 @@ namespace ASDBlackV1
     {
         bool hata = false;
         int index = 0;
-        int index_total = 0;
+        int sayac;
+        string kok;
+        string resim_adi;
         string[] images;
+
+        public void DataRead()
+        {
+            string connectionString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD/Cars.mdb";
+            OleDbConnection conn = new OleDbConnection(connectionString);
+            conn.Open();
+
+
+            string sql = "SELECT * FROM Cars";
+            OleDbCommand cmd = new OleDbCommand(sql, conn);
+            OleDbDataAdapter dAdapter = new OleDbDataAdapter("select * from Models", conn);
+            OleDbDataReader reader = cmd.ExecuteReader();
+
+            DataTable dataTable = new DataTable();
+            DataSet ds = new DataSet();
+
+            
+
+            while (reader.Read())
+            {
+                Console.Write(reader.GetString(1));
+            }
+
+            reader.Close();
+            conn.Close();
+
+
+        }
 
 
         public Form1()
         {
             InitializeComponent();
-            label1.Text = "Index: " + index + " / " + index_total;
             BindDirectoryToTreeView("C:/ASD/");
             treeView1.NodeMouseClick += new TreeNodeMouseClickEventHandler(treeView1_NodeMouseClick);
+            DataRead();
+            /*
+            this.brandNameComboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            this.brandNameComboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
+            
+            this.modelNameComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            this.modelNameComboBox.AutoCompleteSource = AutoCompleteSource.ListItems;*/
+
+
         }
 
         public void BindDirectoryToTreeView(string directoryPathToBind)
@@ -46,15 +87,17 @@ namespace ASDBlackV1
 
         public void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-
             if (e.Node.Text != "ASD")
             {
-                index++;
-                images[index] = Directory.GetFiles("C:/ASD/" + e.Node.Text + "/", "*.jpg");
+                images = (string[])Directory.GetFiles("C:/ASD/" + e.Node.Text + "/", "*.jpg");
 
                 pictureBox1.Image = new Bitmap(images[index]);
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                label2.Text = images[index].ToString();
+                sayac = index + 1;
+                label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
+                kok = "C:/ASD/" + e.Node.Text + "/";
+                resim_adi = images[index].Replace(kok, "");
+                label2.Text = resim_adi;
             }
         }
         
@@ -231,12 +274,13 @@ namespace ASDBlackV1
             {
                 hata = true;
                 MessageBox.Show("Vites Tipi Seçin!!!");
-            }
+            };
 
 
             //
             // Özellikler
             //
+            
             int ozellik_sayisi = 0;
             int ozellik_artis = 0;
 
@@ -342,22 +386,45 @@ namespace ASDBlackV1
 
         private void btn_ileri_Click(object sender, EventArgs e)
         {
-            if (index != 0)
-            {
-                index++;
-                label1.Text = "Index: " + index + " / " + index_total;
-                label2.Text = images[index].ToString();
-            }
+            index++;
+            pictureBox1.Image = new Bitmap(images[index]);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            sayac = index + 1;
+            label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
+            resim_adi = images[index].Replace(kok, "");
+            label2.Text = resim_adi;
         }
 
         private void btn_geri_Click(object sender, EventArgs e)
         {
-            if (index != 0)
+            index--;
+            pictureBox1.Image = new Bitmap(images[index]);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            sayac = index + 1;
+            label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
+            resim_adi = images[index].Replace(kok, "");
+            label2.Text = resim_adi;
+              
+        }
+
+        private void checkBox8_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox8.Checked)
             {
-                index--;
-                label1.Text = "Index: " + index + " / " + index_total;
-                label2.Text = images[index].ToString();
+                checkBox4.Checked = true;
+                checkBox5.Checked = true;
+                checkBox6.Checked = true;
+                checkBox7.Checked = true;
             }
         }
+        
+        private void brandNameComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void modelNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
     }
+
 }

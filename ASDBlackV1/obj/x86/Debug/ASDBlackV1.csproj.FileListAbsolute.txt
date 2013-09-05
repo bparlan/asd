@@ -23,3 +23,8 @@ C:\ASD\ASDBlackV1\obj\x86\Debug\ASDBlackV1.exe
 C:\ASD\ASDBlackV1\obj\x86\Debug\ASDBlackV1.Form1.resources
 C:\ASD\ASDBlackV1\obj\x86\Debug\ASDBlackV1.Properties.Resources.resources
 C:\ASD\ASDBlackV1\obj\x86\Debug\ASDBlackV1.csproj.GenerateResource.Cache
+C:\ASD\ASDBlackV1\obj\x86\Debug\ASDBlackV1.csprojResolveAssemblyReference.cache
+C:\ASD\ASDBlackV1\bin\Debug\Cars.mdb
+C:\ASD\ASDBlackV1\bin\Debug\ASDBlackV1.exe
+C:\ASD\ASDBlackV1\bin\Debug\ASDBlackV1.pdb
+C:\ASD\ASDBlackV1\obj\x86\Debug\ASDBlackV1.pdb
