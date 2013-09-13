@@ -153,7 +153,7 @@ namespace ASDBlackV1
 
             }
 
-            catch (UnauthorizedAccessException ex)
+            catch (UnauthorizedAccessException)
             {
                 // TODO:  write some handler to log and/or deal with 
                 // unauthorized exception cases
