@@ -91,6 +91,8 @@ namespace ASDBlackV1
             RecurseFolders(directoryPathToBind, rootNode);
         }
 
+
+
         public void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             index = 0;
@@ -108,9 +110,22 @@ namespace ASDBlackV1
               
                 resim_adi = images[index].Replace(kok, "");
                 resim_title = resim_adi.Remove((resim_adi.Length-4), 4);
-                label2.Text = resim_adi;
                 label10.Text = resim_title + " düzenleniyor.";
+
+                Editlimi();
             }
+        }
+
+        public void Editlimi()
+        {
+
+            DirectoryInfo di = new DirectoryInfo(kok);
+            FileInfo[] TXTFiles = di.GetFiles(resim_title + "*.txt");
+            if (TXTFiles.Length != 0)
+            {
+                label10.Text = label10.Text + " // Daha önce düzenlenmiş.";
+            }
+
         }
         
         public void RecurseFolders(string path, TreeNode node)
@@ -120,12 +135,22 @@ namespace ASDBlackV1
 
             try
             {
-                foreach (var subdir in dir.GetDirectories())
+                if (Directory.Exists(path))
                 {
-                    var childnode = new TreeNode();
-                    node.Nodes.Add(childnode);
-                    RecurseFolders(subdir.FullName, childnode);
+                    foreach (var subdir in dir.GetDirectories())
+                    {
+                        var childnode = new TreeNode();
+                        node.Nodes.Add(childnode);
+                        RecurseFolders(subdir.FullName, childnode);
+                    }
                 }
+
+                else
+                {
+                    MessageBox.Show("Hata: C:/ASD Dosyası bulunamıyor");
+                    Environment.Exit(0);
+                }
+
             }
 
             catch (UnauthorizedAccessException ex)
@@ -133,12 +158,13 @@ namespace ASDBlackV1
                 // TODO:  write some handler to log and/or deal with 
                 // unauthorized exception cases
             }
-            
+
             foreach (var fi in dir.GetFiles().OrderBy(c => c.Name))
-            {
-                //var fileNode = new TreeNode(fi.Name);
-                //node.Nodes.Add(fileNode);
-            }
+                {
+                    //var fileNode = new TreeNode(fi.Name);
+                    //node.Nodes.Add(fileNode);
+                }
+
         }
 
 
@@ -355,7 +381,15 @@ namespace ASDBlackV1
             //
             //fiyat
             //
-            icerik += textBox4.Text + " " + comboBox4.Text;
+            if (textBox4.Text != String.Empty)
+            {
+                icerik += textBox4.Text + " " + comboBox4.Text;
+            }
+
+            else
+            {
+                icerik += 0 + " " + comboBox4.Text;
+            }
             
             if(hata == false){
 
@@ -408,8 +442,9 @@ namespace ASDBlackV1
                 label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
                 resim_adi = images[index].Replace(kok, "");
                 resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
-                label2.Text = resim_adi;
                 label10.Text = resim_title + " düzenleniyor.";
+
+                Editlimi();
             }
             else
             {
@@ -428,8 +463,9 @@ namespace ASDBlackV1
                 label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
                 resim_adi = images[index].Replace(kok, "");
                 resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
-                label2.Text = resim_adi;
                 label10.Text = resim_title + " düzenleniyor.";
+
+                Editlimi();
             }
             else
             {
@@ -467,8 +503,9 @@ namespace ASDBlackV1
                 label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
                 resim_adi = images[index].Replace(kok, "");
                 resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
-                label2.Text = resim_adi;
                 label10.Text = resim_title + " düzenleniyor.";
+
+                Editlimi();
             }
             else
                 label10.Text = "5 Resim öncesi bulunmamakta.";
@@ -486,8 +523,9 @@ namespace ASDBlackV1
 
                 resim_adi = images[index].Replace(kok, "");
                 resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
-                label2.Text = resim_adi;
                 label10.Text = resim_title + " düzenleniyor.";
+
+                Editlimi();
             }
             else
             {
