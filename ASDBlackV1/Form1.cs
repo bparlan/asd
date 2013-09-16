@@ -39,32 +39,48 @@ namespace ASDBlackV1
 
         public void DataRead()
         {
-            string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD_v1/Cars.mdb";
-            string query = "SELECT BrandNo, BrandName FROM Cars";
-            OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
-            DataTable source = new DataTable();
-            dAdapter.Fill(source);
-            comboBox1.DataSource = source;
-            comboBox1.ValueMember = "BrandNo";
-            comboBox1.DisplayMember = "BrandName";
+            try
+            {
+                string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD_v1/Cars.mdb";
+                string query = "SELECT BrandNo, BrandName FROM Cars";
+                OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
+                DataTable source = new DataTable();
+                dAdapter.Fill(source);
+                comboBox1.DataSource = source;
+                comboBox1.ValueMember = "BrandNo";
+                comboBox1.DisplayMember = "BrandName";
 
-            comboBox1.SelectedIndexChanged += new System.EventHandler(comboBox1_SelectedIndexChanged);
+                comboBox1.SelectedIndexChanged += new System.EventHandler(comboBox1_SelectedIndexChanged);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            markaid = comboBox1.SelectedValue.ToString();
+            try
+            {
+                markaid = comboBox1.SelectedValue.ToString();
 
-            string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD_v1/Cars.mdb";
-            string query = "SELECT ModelName FROM Models WHERE BrandNo = " + markaid;
-            OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
-            DataTable source = new DataTable();
-            dAdapter.Fill(source);
-            comboBox2.DataSource = source;
-            comboBox2.ValueMember = "ModelName";
-            comboBox2.DisplayMember = "ModelName";
+                string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD_v1/Cars.mdb";
+                string query = "SELECT ModelName FROM Models WHERE BrandNo = " + markaid;
+                OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
+                DataTable source = new DataTable();
+                dAdapter.Fill(source);
+                comboBox2.DataSource = source;
+                comboBox2.ValueMember = "ModelName";
+                comboBox2.DisplayMember = "ModelName";
 
-            modelid = comboBox2.SelectedValue.ToString();
+                modelid = comboBox2.SelectedValue.ToString();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
 
