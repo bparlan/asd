@@ -36,3 +36,4 @@ C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.csproj.GenerateResource.Cache
 C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.exe.manifest
 C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.application
 C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.TrustInfo.xml
+C:\ASD_v1\ASDBlackV1\obj\x86\Release\ASDBlackV1.csprojResolveAssemblyReference.cache

@@ -97,6 +97,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             brandNameLabel1 = new System.Windows.Forms.Label();
             modelNameLabel = new System.Windows.Forms.Label();
             companyNameLabel = new System.Windows.Forms.Label();
@@ -331,7 +332,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(154, 205);
+            this.label1.Location = new System.Drawing.Point(154, 221);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 23;
@@ -591,21 +592,10 @@
             // 
             // companyNameComboBox
             // 
-            this.companyNameComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.companiesBindingSource, "CompanyName", true));
-            this.companyNameComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.companiesBindingSource, "CompanyTel", true));
-            this.companyNameComboBox.DataSource = this.companiesBindingSource;
-            this.companyNameComboBox.DisplayMember = "CompanyName";
-            this.companyNameComboBox.FormattingEnabled = true;
             this.companyNameComboBox.Location = new System.Drawing.Point(413, 278);
             this.companyNameComboBox.Name = "companyNameComboBox";
             this.companyNameComboBox.Size = new System.Drawing.Size(340, 21);
-            this.companyNameComboBox.TabIndex = 68;
-            this.companyNameComboBox.ValueMember = "CompanyTel";
-            // 
-            // companiesBindingSource1
-            // 
-            this.companiesBindingSource1.DataMember = "Companies";
-            this.companiesBindingSource1.DataSource = this.carsDataSet;
+            this.companyNameComboBox.TabIndex = 78;
             // 
             // groupBox2
             // 
@@ -654,7 +644,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(150, 14);
+            this.pictureBox1.Location = new System.Drawing.Point(147, 22);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(193, 156);
             this.pictureBox1.TabIndex = 68;
@@ -736,10 +726,18 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(154, 182);
+            this.label11.Location = new System.Drawing.Point(154, 198);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(0, 13);
             this.label11.TabIndex = 77;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Location = new System.Drawing.Point(140, 8);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(208, 178);
+            this.groupBox3.TabIndex = 80;
+            this.groupBox3.TabStop = false;
             // 
             // Form1
             // 
@@ -799,8 +797,9 @@
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.kaydet);
+            this.Controls.Add(this.groupBox3);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Alım Satım Dergisi - Program";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -884,6 +883,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 

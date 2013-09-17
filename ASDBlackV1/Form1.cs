@@ -30,6 +30,9 @@ namespace ASDBlackV1
         int index = 0;
         int sayac;
         int max;
+        string sirket1;
+        string sirket2;
+        string sirket3;
         string kok;
         string markaid;
         string modelid;
@@ -83,6 +86,64 @@ namespace ASDBlackV1
             }
         }
 
+        public void DataSirketRead()
+        {
+            try
+            {
+                string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD_v1/Cars.mdb";
+                string query = "SELECT CompanyNo, CompanyName FROM Companies";
+                OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
+                DataTable source = new DataTable();
+                dAdapter.Fill(source);
+                companyNameComboBox.DataSource = source;
+                companyNameComboBox.ValueMember = "CompanyNo";
+                companyNameComboBox.DisplayMember = "CompanyName";
+
+
+                companyNameComboBox.SelectedIndexChanged += new System.EventHandler(companyNameComboBox_SelectedIndexChanged);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public void companyNameComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+
+            System.Data.OleDb.OleDbConnection conn = new
+            System.Data.OleDb.OleDbConnection();
+
+            conn.ConnectionString = "Provider=Microsoft.JET.OLEDB.4.0; data source=C:\\ASD_v1/Cars.mdb";
+
+            try
+            {
+
+                sirket1 = companyNameComboBox.SelectedValue.ToString(); // ++ Tel No
+
+                OleDbCommand cmd = new OleDbCommand("SELECT * FROM Companies WHERE CompanyNo = " + sirket1, conn);
+
+                conn.Open();
+
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        //sirket1 = reader.GetValue(0).ToString();
+                        sirket2 = reader.GetString(1);
+                        sirket3 = reader.GetString(2);
+                    }
+                }
+
+              }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         public Form1()
         {
@@ -90,6 +151,7 @@ namespace ASDBlackV1
             BindDirectoryToTreeView("C:/ASD/");
             treeView1.NodeMouseClick += new TreeNodeMouseClickEventHandler(treeView1_NodeMouseClick);
             DataRead();
+            DataSirketRead();
             label10.Text = "Program by Barış Parlan - bparlan@gmail.com // Alım Satım Dergisi © 2013";
             
             comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -391,7 +453,7 @@ namespace ASDBlackV1
             for(int i=satir_sayisi; i<8; i++) { icerik += Environment.NewLine; }
 
             //Şirket Adı
-            icerik += companyNameComboBox.Text + Environment.NewLine + companyNameComboBox.SelectedValue + Environment.NewLine; satir_sayisi +=2 ;
+            icerik += sirket2 + Environment.NewLine + sirket3 + Environment.NewLine; satir_sayisi +=2 ;
 
 
             //
@@ -407,8 +469,8 @@ namespace ASDBlackV1
                 icerik += 0 + " " + comboBox4.Text;
             }
             
-            if(hata == false){
-
+            if(hata == false)
+            {
                 System.IO.StreamWriter writer;
                 dosya_adi = dosya_adi + ".txt";
                 writer = new System.IO.StreamWriter(dosya_adi);
@@ -427,14 +489,14 @@ namespace ASDBlackV1
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'carsDataSet.Companies' table. You can move, or remove it, as needed.
-            this.companiesTableAdapter.Fill(this.carsDataSet.Companies);
+            //this.companiesTableAdapter.Fill(this.carsDataSet.Companies);
             // TODO: This line of code loads data into the 'carsDataSet.Models' table. You can move, or remove it, as needed.
-            this.modelsTableAdapter.Fill(this.carsDataSet.Models);
+            //this.modelsTableAdapter.Fill(this.carsDataSet.Models);
             // TODO: This line of code loads data into the 'carsDataSet.Cars' table. You can move, or remove it, as needed.
-            this.carsTableAdapter.Fill(this.carsDataSet.Cars);
+            //this.carsTableAdapter.Fill(this.carsDataSet.Cars);
         }
 
-        private void fillByToolStripButton_Click(object sender, EventArgs e)
+        /*private void fillByToolStripButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -445,7 +507,7 @@ namespace ASDBlackV1
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
 
-        }
+        }*/
 
         private void btn_ileri_Click(object sender, EventArgs e)
         {
@@ -499,14 +561,14 @@ namespace ASDBlackV1
                 checkBox7.Checked = true;
             }
         }
-        
+        /*
         private void brandNameComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
 
         private void modelNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-        }
+        }*/
 
         private void button1_Click_1(object sender, EventArgs e)
         {
