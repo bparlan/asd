@@ -261,23 +261,37 @@ namespace ASDBlackV1
             icerik += " " + comboBox2.Text + Environment.NewLine;
             satir_sayisi++;
 
-/*
-1	PR	Prestige
-2	XX	İş Makinesi
-3	XX	Jeneratör
-4	BO	Yat/Bot
-5	AT	ATV
-6	CO	İş Araçları
-7	MO	Motosiklet
-8	XX	Araç/Gereç
-9	HC	Ağır iş araçları
-10	P4	Prestige 4x4
-11	TR	Traktör
-12	44	4x4
-13	XX	El Aletleri
-14	FA	Tarım
-15	VE	Araçlar
-             */
+    /*
+    1	PR	Prestige
+    10	P4	Prestige 4x4
+    15	VE	Araçlar
+    * 	BU 	Budget - Ucuz Araçlar
+    *		Kazalı Araçlar
+    12	44	4x4
+
+    7	MO	Motosiklet
+    *	CY	Bisiklet
+    6	CO	İş Araçları
+    9	HC	Ağır iş araçları
+    14	FA	Tarım
+    11	TR	Traktör
+    2	HC	İş Makinesi
+    3	GE	Jeneratör
+    8	TO	Araç/Gereç
+    13	HA	El Aletleri
+    4	BO	Yat/Bot
+
+    5	AT	ATV
+    *	BP	Akülü Araç
+    *	SM	Model Araba
+    *	SP	Yedek Parça
+    *	HW	Hırdavat
+ 
+    -------------------------------
+ 
+    * 	SC
+    * 	HM
+    */
 
             if (radioButton1.Checked) //Prestige
             {
@@ -285,11 +299,11 @@ namespace ASDBlackV1
             }
             else if (radioButton2.Checked) //İş Makinesi
             {
-                dosya_adi = dosya_adi + ".XX";
+                dosya_adi = dosya_adi + ".HC";
             }
             else if (radioButton3.Checked) //Jenerator
             {
-                dosya_adi = dosya_adi + ".XX";
+                dosya_adi = dosya_adi + ".GE";
             }
             else if (radioButton4.Checked) //YatBot
             {
@@ -309,7 +323,7 @@ namespace ASDBlackV1
             }
             else if (radioButton8.Checked) // AraçGereç
             {
-                dosya_adi = dosya_adi + ".XX";
+                dosya_adi = dosya_adi + ".TO";
             }
             else if (radioButton9.Checked) //Ağır İş
             {
