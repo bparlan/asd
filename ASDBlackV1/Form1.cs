@@ -44,7 +44,7 @@ namespace ASDBlackV1
         {
             try
             {
-                string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD_v1/Cars.mdb";
+                string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\asd.git/Cars.mdb";
                 string query = "SELECT BrandNo, BrandName FROM Cars";
                 OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
                 DataTable source = new DataTable();
@@ -68,7 +68,7 @@ namespace ASDBlackV1
             {
                 markaid = comboBox1.SelectedValue.ToString();
 
-                string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD_v1/Cars.mdb";
+                string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\asd.git/Cars.mdb";
                 string query = "SELECT ModelName FROM Models WHERE BrandNo = " + markaid;
                 OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
                 DataTable source = new DataTable();
@@ -90,7 +90,7 @@ namespace ASDBlackV1
         {
             try
             {
-                string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\ASD_v1/Cars.mdb";
+                string connString = "Provider=Microsoft.JET.OLEDB.4.0;data source=C:\\asd.git/Cars.mdb";
                 string query = "SELECT CompanyNo, CompanyName FROM Companies";
                 OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
                 DataTable source = new DataTable();
@@ -115,7 +115,7 @@ namespace ASDBlackV1
             System.Data.OleDb.OleDbConnection conn = new
             System.Data.OleDb.OleDbConnection();
 
-            conn.ConnectionString = "Provider=Microsoft.JET.OLEDB.4.0; data source=C:\\ASD_v1/Cars.mdb";
+            conn.ConnectionString = "Provider=Microsoft.JET.OLEDB.4.0; data source=C:\\asd.git/Cars.mdb";
 
             try
             {
@@ -487,7 +487,7 @@ namespace ASDBlackV1
             {
                 System.IO.StreamWriter writer;
                 dosya_adi = dosya_adi + ".txt";
-                writer = new System.IO.StreamWriter(dosya_adi);
+                writer = new System.IO.StreamWriter(dosya_adi, false, Encoding.GetEncoding(1252));
 
                 writer.WriteLine(icerik);
                 writer.Close();
