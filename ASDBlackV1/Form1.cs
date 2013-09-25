@@ -490,6 +490,15 @@ namespace ASDBlackV1
                 writer = new System.IO.StreamWriter(dosya_adi, false, Encoding.GetEncoding(1252));
 
                 writer.WriteLine(icerik);
+				
+				/* bu şekilde yazmayı dene
+				using (FileStream fs = File.Create(dosya_adi, 2048, FileOptions.None)) {
+				BinaryFormatter formatter = new BinaryFormatter();
+				formatter.Serialize(fs, Encoding.Unicode.GetBytes(icerik));
+				}
+				*/
+				
+				
                 writer.Close();
 
 
