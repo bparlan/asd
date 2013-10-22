@@ -71,14 +71,6 @@
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.carsDataSet = new ASDBlackV1.CarsDataSet();
-            this.carsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.carsTableAdapter = new ASDBlackV1.CarsDataSetTableAdapters.CarsTableAdapter();
-            this.tableAdapterManager = new ASDBlackV1.CarsDataSetTableAdapters.TableAdapterManager();
-            this.companiesTableAdapter = new ASDBlackV1.CarsDataSetTableAdapters.CompaniesTableAdapter();
-            this.modelsTableAdapter = new ASDBlackV1.CarsDataSetTableAdapters.ModelsTableAdapter();
-            this.modelsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.companiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.companyNameComboBox = new System.Windows.Forms.ComboBox();
@@ -98,17 +90,29 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.carsDataSet = new ASDBlackV1.CarsDataSet();
+            this.carsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.carsTableAdapter = new ASDBlackV1.CarsDataSetTableAdapters.CarsTableAdapter();
+            this.tableAdapterManager = new ASDBlackV1.CarsDataSetTableAdapters.TableAdapterManager();
+            this.companiesTableAdapter = new ASDBlackV1.CarsDataSetTableAdapters.CompaniesTableAdapter();
+            this.modelsTableAdapter = new ASDBlackV1.CarsDataSetTableAdapters.ModelsTableAdapter();
+            this.modelsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.companiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
             brandNameLabel1 = new System.Windows.Forms.Label();
             modelNameLabel = new System.Windows.Forms.Label();
             companyNameLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companiesBindingSource1)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carsDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companiesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companiesBindingSource1)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // brandNameLabel1
@@ -132,7 +136,7 @@
             // companyNameLabel
             // 
             companyNameLabel.AutoSize = true;
-            companyNameLabel.Location = new System.Drawing.Point(355, 281);
+            companyNameLabel.Location = new System.Drawing.Point(352, 300);
             companyNameLabel.Name = "companyNameLabel";
             companyNameLabel.Size = new System.Drawing.Size(37, 13);
             companyNameLabel.TabIndex = 48;
@@ -140,17 +144,17 @@
             // 
             // kaydet
             // 
-            this.kaydet.Location = new System.Drawing.Point(151, 277);
+            this.kaydet.Location = new System.Drawing.Point(148, 296);
             this.kaydet.Name = "kaydet";
-            this.kaydet.Size = new System.Drawing.Size(192, 23);
-            this.kaydet.TabIndex = 1;
+            this.kaydet.Size = new System.Drawing.Size(192, 19);
+            this.kaydet.TabIndex = 69;
             this.kaydet.Text = "Kaydet";
             this.kaydet.UseVisualStyleBackColor = true;
             this.kaydet.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(355, 224);
+            this.textBox1.Location = new System.Drawing.Point(352, 243);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(32, 20);
             this.textBox1.TabIndex = 61;
@@ -325,7 +329,7 @@
             // 
             this.treeView1.Location = new System.Drawing.Point(13, 14);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(121, 285);
+            this.treeView1.Size = new System.Drawing.Size(121, 304);
             this.treeView1.TabIndex = 19;
             this.treeView1.Tag = "";
             // 
@@ -340,7 +344,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(387, 227);
+            this.label3.Location = new System.Drawing.Point(384, 246);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(18, 13);
             this.label3.TabIndex = 27;
@@ -394,7 +398,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(445, 227);
+            this.label4.Location = new System.Drawing.Point(442, 246);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(19, 13);
             this.label4.TabIndex = 30;
@@ -402,7 +406,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(413, 224);
+            this.textBox2.Location = new System.Drawing.Point(410, 243);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(34, 20);
             this.textBox2.TabIndex = 62;
@@ -411,7 +415,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(519, 226);
+            this.label5.Location = new System.Drawing.Point(516, 245);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(21, 13);
             this.label5.TabIndex = 32;
@@ -419,7 +423,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(472, 223);
+            this.textBox3.Location = new System.Drawing.Point(469, 242);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(48, 20);
             this.textBox3.TabIndex = 63;
@@ -428,7 +432,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(615, 227);
+            this.label6.Location = new System.Drawing.Point(612, 246);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 13);
             this.label6.TabIndex = 34;
@@ -436,8 +440,9 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(643, 223);
+            this.textBox4.Location = new System.Drawing.Point(640, 242);
             this.textBox4.Name = "textBox4";
+            this.textBox4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBox4.Size = new System.Drawing.Size(48, 20);
             this.textBox4.TabIndex = 65;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -450,7 +455,7 @@
             "TL",
             "USD",
             "EURO"});
-            this.comboBox4.Location = new System.Drawing.Point(696, 222);
+            this.comboBox4.Location = new System.Drawing.Point(693, 241);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(57, 21);
             this.comboBox4.TabIndex = 66;
@@ -520,7 +525,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(355, 258);
+            this.label7.Location = new System.Drawing.Point(352, 277);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 13);
             this.label7.TabIndex = 43;
@@ -528,55 +533,15 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(413, 254);
+            this.textBox5.Location = new System.Drawing.Point(410, 273);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(340, 20);
             this.textBox5.TabIndex = 67;
             // 
-            // carsDataSet
-            // 
-            this.carsDataSet.DataSetName = "CarsDataSet";
-            this.carsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // carsBindingSource
-            // 
-            this.carsBindingSource.DataMember = "Cars";
-            this.carsBindingSource.DataSource = this.carsDataSet;
-            // 
-            // carsTableAdapter
-            // 
-            this.carsTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CarsTableAdapter = this.carsTableAdapter;
-            this.tableAdapterManager.CompaniesTableAdapter = this.companiesTableAdapter;
-            this.tableAdapterManager.ModelsTableAdapter = this.modelsTableAdapter;
-            this.tableAdapterManager.UpdateOrder = ASDBlackV1.CarsDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // companiesTableAdapter
-            // 
-            this.companiesTableAdapter.ClearBeforeFill = true;
-            // 
-            // modelsTableAdapter
-            // 
-            this.modelsTableAdapter.ClearBeforeFill = true;
-            // 
-            // modelsBindingSource
-            // 
-            this.modelsBindingSource.DataMember = "Models";
-            this.modelsBindingSource.DataSource = this.carsDataSet;
-            // 
-            // companiesBindingSource
-            // 
-            this.companiesBindingSource.DataMember = "Companies";
-            this.companiesBindingSource.DataSource = this.carsDataSet;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(552, 226);
+            this.label8.Location = new System.Drawing.Point(549, 245);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(28, 13);
             this.label8.TabIndex = 48;
@@ -584,7 +549,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(583, 223);
+            this.textBox6.Location = new System.Drawing.Point(580, 242);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(25, 20);
             this.textBox6.TabIndex = 64;
@@ -592,10 +557,10 @@
             // 
             // companyNameComboBox
             // 
-            this.companyNameComboBox.Location = new System.Drawing.Point(413, 278);
+            this.companyNameComboBox.Location = new System.Drawing.Point(410, 297);
             this.companyNameComboBox.Name = "companyNameComboBox";
             this.companyNameComboBox.Size = new System.Drawing.Size(340, 21);
-            this.companyNameComboBox.TabIndex = 78;
+            this.companyNameComboBox.TabIndex = 68;
             // 
             // groupBox2
             // 
@@ -652,9 +617,9 @@
             // 
             // btn_ileri
             // 
-            this.btn_ileri.Location = new System.Drawing.Point(300, 248);
+            this.btn_ileri.Location = new System.Drawing.Point(297, 267);
             this.btn_ileri.Name = "btn_ileri";
-            this.btn_ileri.Size = new System.Drawing.Size(43, 23);
+            this.btn_ileri.Size = new System.Drawing.Size(43, 19);
             this.btn_ileri.TabIndex = 69;
             this.btn_ileri.Text = ">";
             this.btn_ileri.UseVisualStyleBackColor = true;
@@ -662,9 +627,9 @@
             // 
             // btn_geri
             // 
-            this.btn_geri.Location = new System.Drawing.Point(150, 248);
+            this.btn_geri.Location = new System.Drawing.Point(147, 267);
             this.btn_geri.Name = "btn_geri";
-            this.btn_geri.Size = new System.Drawing.Size(44, 23);
+            this.btn_geri.Size = new System.Drawing.Size(44, 19);
             this.btn_geri.TabIndex = 70;
             this.btn_geri.Text = "<";
             this.btn_geri.UseVisualStyleBackColor = true;
@@ -689,7 +654,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 306);
+            this.label9.Location = new System.Drawing.Point(9, 323);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 13);
             this.label9.TabIndex = 73;
@@ -698,16 +663,16 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(55, 306);
+            this.label10.Location = new System.Drawing.Point(56, 323);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(0, 13);
             this.label10.TabIndex = 74;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(197, 248);
+            this.button1.Location = new System.Drawing.Point(194, 267);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 23);
+            this.button1.Size = new System.Drawing.Size(30, 19);
             this.button1.TabIndex = 75;
             this.button1.Text = "<<";
             this.button1.UseVisualStyleBackColor = true;
@@ -715,9 +680,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(267, 248);
+            this.button2.Location = new System.Drawing.Point(264, 267);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(30, 23);
+            this.button2.Size = new System.Drawing.Size(30, 19);
             this.button2.TabIndex = 76;
             this.button2.Text = ">>";
             this.button2.UseVisualStyleBackColor = true;
@@ -739,11 +704,95 @@
             this.groupBox3.TabIndex = 80;
             this.groupBox3.TabStop = false;
             // 
+            // carsDataSet
+            // 
+            this.carsDataSet.DataSetName = "CarsDataSet";
+            this.carsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // carsBindingSource
+            // 
+            this.carsBindingSource.DataMember = "Cars";
+            this.carsBindingSource.DataSource = this.carsDataSet;
+            // 
+            // carsTableAdapter
+            // 
+            this.carsTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CarsTableAdapter = this.carsTableAdapter;
+            this.tableAdapterManager.CompaniesTableAdapter = this.companiesTableAdapter;
+            this.tableAdapterManager.ModelsTableAdapter = this.modelsTableAdapter;
+            this.tableAdapterManager.UpdateOrder = ASDBlackV1.CarsDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // companiesTableAdapter
+            // 
+            this.companiesTableAdapter.ClearBeforeFill = true;
+            // 
+            // modelsTableAdapter
+            // 
+            this.modelsTableAdapter.ClearBeforeFill = true;
+            // 
+            // modelsBindingSource
+            // 
+            this.modelsBindingSource.DataMember = "Models";
+            this.modelsBindingSource.DataSource = this.carsDataSet;
+            // 
+            // companiesBindingSource
+            // 
+            this.companiesBindingSource.DataMember = "Companies";
+            this.companiesBindingSource.DataSource = this.carsDataSet;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(357, 217);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(68, 17);
+            this.checkBox10.TabIndex = 42;
+            this.checkBox10.Text = "SunRoof";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Location = new System.Drawing.Point(425, 217);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(78, 17);
+            this.checkBox11.TabIndex = 43;
+            this.checkBox11.Text = "Deri Koltuk";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(509, 217);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(90, 17);
+            this.checkBox12.TabIndex = 83;
+            this.checkBox12.Text = "Park Sensörü";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Location = new System.Drawing.Point(600, 217);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(72, 17);
+            this.checkBox13.TabIndex = 84;
+            this.checkBox13.Text = "Çelik Jant";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(767, 330);
+            this.ClientSize = new System.Drawing.Size(767, 345);
+            this.Controls.Add(this.checkBox13);
+            this.Controls.Add(this.checkBox12);
+            this.Controls.Add(this.checkBox11);
+            this.Controls.Add(this.checkBox10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -799,18 +848,18 @@
             this.Controls.Add(this.kaydet);
             this.Controls.Add(this.groupBox3);
             this.Name = "Form1";
-            this.Text = "Alım Satım Dergisi - Program";
+            this.Text = "Alım Satım Dergisi - Program v2";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.carsDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.carsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companiesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.companiesBindingSource1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carsDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.companiesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -884,6 +933,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox checkBox13;
     }
 }
 

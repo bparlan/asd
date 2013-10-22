@@ -205,6 +205,8 @@ namespace ASDBlackV1
             }
 
         }
+
+
         
         public void RecurseFolders(string path, TreeNode node)
         {
@@ -444,6 +446,25 @@ namespace ASDBlackV1
             else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
             ozellik_artis = 0;
 
+            if (checkBox10.Checked) { icerik += "SunRoof"; ozellik_sayisi++; ozellik_artis = 1; }
+            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
+            ozellik_artis = 0;
+
+            if (checkBox11.Checked) { icerik += "Deri Koltuk"; ozellik_sayisi++; ozellik_artis = 1; }
+            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
+            ozellik_artis = 0;
+
+            if (checkBox12.Checked) { icerik += "Park Sensörü"; ozellik_sayisi++; ozellik_artis = 1; }
+            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
+            ozellik_artis = 0;
+
+            if (checkBox13.Checked) { icerik += "Çelik Jant"; ozellik_sayisi++; ozellik_artis = 1; }
+            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
+            ozellik_artis = 0;
             //
             //cc
             //
@@ -475,7 +496,9 @@ namespace ASDBlackV1
             //
             if (textBox4.Text != String.Empty)
             {
-                icerik += textBox4.Text + " " + comboBox4.Text;
+                double fiyat = Convert.ToInt32(textBox4.Text);
+                string fiyatstr = fiyat.ToString("N0");
+                icerik += fiyatstr + " " + comboBox4.Text;
             }
 
             else
@@ -487,27 +510,38 @@ namespace ASDBlackV1
             {
                 System.IO.StreamWriter writer;
                 dosya_adi = dosya_adi + ".txt";
-                writer = new System.IO.StreamWriter(dosya_adi, false, Encoding.GetEncoding(1252));
-
+                writer = new System.IO.StreamWriter(dosya_adi, false, System.Text.Encoding.Default);
                 writer.WriteLine(icerik);
-				
-				/* bu şekilde yazmayı dene
-				using (FileStream fs = File.Create(dosya_adi, 2048, FileOptions.None)) {
-				BinaryFormatter formatter = new BinaryFormatter();
-				formatter.Serialize(fs, Encoding.Unicode.GetBytes(icerik));
-				}
-				*/
-				
-				
                 writer.Close();
 
-
                 label10.Text = resim_adi + " kaydedildi.";
+                ClearTextBoxes();
             }
 
             hata = false;
         }
 
+        private void ClearTextBoxes()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                {
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    if (control is CheckBox)
+                        ((CheckBox)control).Checked = false;
+                    if (control is RadioButton)
+                        ((RadioButton)control).Checked = false;
+                    else
+                        func(control.Controls);
+                }
+            };
+
+            func(Controls);
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {

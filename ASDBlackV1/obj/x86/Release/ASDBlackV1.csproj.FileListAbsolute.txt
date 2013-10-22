@@ -51,3 +51,4 @@ C:\asd.git\ASDBlackV1\obj\x86\Release\ASDBlackV1.csproj.GenerateResource.Cache
 C:\asd.git\ASDBlackV1\obj\x86\Release\ASDBlackV1.TrustInfo.xml
 C:\asd.git\ASDBlackV1\obj\x86\Release\ASDBlackV1.exe.manifest
 C:\asd.git\ASDBlackV1\obj\x86\Release\ASDBlackV1.application
+C:\asd.git\ASDBlackV1\obj\x86\Release\ASDBlackV1.csprojResolveAssemblyReference.cache
