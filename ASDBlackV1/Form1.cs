@@ -40,6 +40,9 @@ namespace ASDBlackV1
         string resim_title;
         string[] images;
 
+        string sql_icerik;
+        
+
         public void DataRead()
         {
             try
@@ -253,7 +256,11 @@ namespace ASDBlackV1
         private void button1_Click(object sender, EventArgs e)
         {
             string dosya_adi = kok + resim_title;
+
+            
+            string sql_name = kok;
             string icerik;
+
             int satir_sayisi = 0;
 
             dosya_adi += "." + comboBox1.Text;
@@ -261,6 +268,8 @@ namespace ASDBlackV1
             icerik = textBox1.Text + " Model";
             icerik += " " + comboBox1.Text;
             icerik += " " + comboBox2.Text + Environment.NewLine;
+            sql_icerik = " Model";
+
             satir_sayisi++;
 
     /*
@@ -514,12 +523,163 @@ namespace ASDBlackV1
                 writer.WriteLine(icerik);
                 writer.Close();
 
+                System.IO.StreamWriter sqlwriter;
+                sql_name = sql_name + "commands.sql";
+                sqlwriter = new System.IO.StreamWriter(sql_name, false, System.Text.Encoding.Default);
+                sqlwriter.WriteLine(sql_icerik);
+                sqlwriter.Close();
+
                 label10.Text = resim_adi + " kaydedildi.";
                 ClearTextBoxes();
+
             }
 
             hata = false;
         }
+
+
+        /*
+         * $kod=mysql_real_escape_string($_POST["hdnKod"]);
+$isim=mysql_real_escape_string($_POST["txtIsim"]);
+$modelTarihi=mysql_real_escape_string($_POST["cmbModelYil"]);
+$durumKod=mysql_real_escape_string($_POST["cmbDurum"]);
+$aciklama=mysql_real_escape_string($_POST["txtAciklama"]);
+$fiyat=mysql_real_escape_string($_POST["txtFiyat"]);
+$yakitKod=mysql_real_escape_string($_POST["cmbYakit"]);
+$kapiSayisi=mysql_real_escape_string($_POST["cmbKapi"]);
+$guc=mysql_real_escape_string($_POST["txtGuc"]);
+$vitesKod=mysql_real_escape_string($_POST["cmbVites"]);
+$bgjHacmi=mysql_real_escape_string($_POST["txtBgjHacmi"]);
+$agirlik=mysql_real_escape_string($_POST["txtAgirlik"]);
+$kategoriKod=mysql_real_escape_string($_POST["cmbKategori"]);
+$modelKod=mysql_real_escape_string($_POST["cmbModel"]);
+
+$silindirHacmi=mysql_real_escape_string($_POST["txtSilindirHacmi"]);
+$motorGucu=mysql_real_escape_string($_POST["txtMotorGucu"]);
+$sagDireksiyon=mysql_real_escape_string($_POST["chkSagDireksiyon"]);
+$km=mysql_real_escape_string($_POST["txtKm"]);
+$cdPlayer=mysql_real_escape_string($_POST["chkCdPlayer"]);
+$otoCamOn=mysql_real_escape_string($_POST["chkOtoCamOn"]);
+$otoCamArka=mysql_real_escape_string($_POST["chkOtoCamArka"]);
+$esp=mysql_real_escape_string($_POST["chkEsp"]);
+$klima=mysql_real_escape_string($_POST["chkKlima"]);
+$navigasyon=mysql_real_escape_string($_POST["chkNavigasyon"]);
+$parkSensoru=mysql_real_escape_string($_POST["chkParkSensoru"]);
+$radyoKaset=mysql_real_escape_string($_POST["chkRadyoKaset"]);
+$camTavan=mysql_real_escape_string($_POST["chkCamTavan"]);
+$hdrDireksiyon=mysql_real_escape_string($_POST["chkHdrDireksiyon"]);
+$merkeziKilit=mysql_real_escape_string($_POST["chkMerkeziKilit"]);
+$sabitHizKontrolu=mysql_real_escape_string($_POST["chkSabitHizKontrolu"]);
+$xenonFar=mysql_real_escape_string($_POST["chkXenonFar"]);
+$katalysator=mysql_real_escape_string($_POST["chkKatalysator"]);
+$otoAyna=mysql_real_escape_string($_POST["chkOtoAyna"]);
+$deriKoltuk=mysql_real_escape_string($_POST["chkDeriKoltuk"]);
+$airbag=mysql_real_escape_string($_POST["chkAirbag"]);
+$airbag2=mysql_real_escape_string($_POST["chkAirbag2"]);
+$alarm=mysql_real_escape_string($_POST["chkAlarm"]);
+$fourByFour=mysql_real_escape_string($_POST["chkFourByFour"]);
+$celikJant=mysql_real_escape_string($_POST["chkCelikJant"]);
+$sunroof=mysql_real_escape_string($_POST["chkSunroof"]);
+$aracTelefonu=mysql_real_escape_string($_POST["chkAracTelefonu"]);
+$yolBilgisayari=mysql_real_escape_string($_POST["chkYolBilgisayari"]);
+$paraBirimi=mysql_real_escape_string($_POST["cmbParaBirimi"]);
+$kasa=mysql_real_escape_string($_POST["cmbKasa"]);
+$renk=mysql_real_escape_string($_POST["cmbRenk"]);
+         * 
+         * $sql="INSERT INTO   araclar  ( ";
+    $sql.="isim,  ";
+    $sql.="modelTarihi,  ";
+    $sql.="durumKod,  ";
+    $sql.="aciklama,  ";
+    $sql.="fiyat,  ";
+    $sql.="yakitKod,  ";
+    $sql.="kapiSayisi,  ";
+    $sql.="guc,  ";
+    $sql.="vitesKod,  ";
+    $sql.="bgjHacmi,  ";
+    $sql.="agirlik,  ";
+    $sql.="kategoriKod,  ";
+    $sql.="modelKod,  ";
+    $sql.="silindirHacmi,  ";
+    $sql.="motorGucu,  ";
+    $sql.="sagDireksiyon,  ";
+    $sql.="km,  ";
+    $sql.="cdPlayer,  ";
+    $sql.="otoCamOn,  ";
+    $sql.="otoCamArka,  ";
+    $sql.="esp,  ";
+    $sql.="klima,  ";
+    $sql.="navigasyon,  ";
+    $sql.="parkSensoru,  ";
+    $sql.="radyoKaset,  ";
+    $sql.="camTavan,  ";
+    $sql.="hdrDireksiyon,  ";
+    $sql.="merkeziKilit,  ";
+    $sql.="sabitHizKontrolu,  ";
+    $sql.="xenonFar,  ";
+    $sql.="katalysator,  ";
+    $sql.="otoAyna,  ";
+    $sql.="deriKoltuk,  ";
+    $sql.="airbag,  ";
+    $sql.="airbag2,  ";
+    $sql.="alarm,  ";
+    $sql.="fourByFour,  ";
+    $sql.="celikJant,  ";
+    $sql.="sunroof,  ";
+    $sql.="aracTelefonu,  ";
+    $sql.="yolBilgisayari,  ";
+    $sql.="kullaniciKod, ";
+    $sql.="paraBirimiKod, ";
+    $sql.="kasaKod, ";
+    $sql.="renkKod ";
+    $sql.=") VALUES ("; 
+    $sql.="\"{$isim}\",";
+    $sql.="{$modelTarihi},";
+    $sql.="{$durumKod},";
+    $sql.="\"{$aciklama}\",";
+    $sql.="{$fiyat},";
+    $sql.="{$yakitKod},";
+    $sql.="{$kapiSayisi},";
+    $sql.="{$guc},";
+    $sql.="{$vitesKod},";
+    $sql.="{$bgjHacmi},";
+    $sql.="{$agirlik},";
+    $sql.="{$kategoriKod},";
+    $sql.="{$modelKod},";
+    $sql.="{$silindirHacmi},";
+    $sql.="{$motorGucu},";
+    $sql.="{$sagDireksiyon},";
+    $sql.="{$km},";
+    $sql.="{$cdPlayer},";
+    $sql.="{$otoCamOn},";
+    $sql.="{$otoCamArka},";
+    $sql.="{$esp},";
+    $sql.="{$klima},";
+    $sql.="{$navigasyon},";
+    $sql.="{$parkSensoru},";
+    $sql.="{$radyoKaset},";
+    $sql.="{$camTavan},";
+    $sql.="{$hdrDireksiyon},";
+    $sql.="{$merkeziKilit},";
+    $sql.="{$sabitHizKontrolu},";
+    $sql.="{$xenonFar},";
+    $sql.="{$katalysator},";
+    $sql.="{$otoAyna},";
+    $sql.="{$deriKoltuk},";
+    $sql.="{$airbag},";
+    $sql.="{$airbag2},";
+    $sql.="{$alarm},";
+    $sql.="{$fourByFour},";
+    $sql.="{$celikJant},";
+    $sql.="{$sunroof},";
+    $sql.="{$aracTelefonu},";
+    $sql.="{$yolBilgisayari},";
+    $sql.="{$sec->code},";
+    $sql.="{$paraBirimi},";
+    $sql.="{$kasa},";
+    $sql.="{$renk}";
+    $sql.=")";
+*/
 
         private void ClearTextBoxes()
         {
@@ -666,6 +826,11 @@ namespace ASDBlackV1
             {
                 label10.Text = "5 Resim sonrasında araç yok.";
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

@@ -102,6 +102,14 @@
             this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.radioButton22 = new System.Windows.Forms.RadioButton();
+            this.radioButton23 = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.radioButton24 = new System.Windows.Forms.RadioButton();
+            this.radioButton25 = new System.Windows.Forms.RadioButton();
             brandNameLabel1 = new System.Windows.Forms.Label();
             modelNameLabel = new System.Windows.Forms.Label();
             companyNameLabel = new System.Windows.Forms.Label();
@@ -113,6 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.carsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companiesBindingSource)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // brandNameLabel1
@@ -144,9 +153,9 @@
             // 
             // kaydet
             // 
-            this.kaydet.Location = new System.Drawing.Point(148, 296);
+            this.kaydet.Location = new System.Drawing.Point(600, 388);
             this.kaydet.Name = "kaydet";
-            this.kaydet.Size = new System.Drawing.Size(192, 19);
+            this.kaydet.Size = new System.Drawing.Size(152, 35);
             this.kaydet.TabIndex = 69;
             this.kaydet.Text = "Kaydet";
             this.kaydet.UseVisualStyleBackColor = true;
@@ -455,7 +464,7 @@
             "TL",
             "USD",
             "EURO"});
-            this.comboBox4.Location = new System.Drawing.Point(693, 241);
+            this.comboBox4.Location = new System.Drawing.Point(696, 241);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(57, 21);
             this.comboBox4.TabIndex = 66;
@@ -535,7 +544,7 @@
             // 
             this.textBox5.Location = new System.Drawing.Point(410, 273);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(340, 20);
+            this.textBox5.Size = new System.Drawing.Size(343, 20);
             this.textBox5.TabIndex = 67;
             // 
             // label8
@@ -559,7 +568,7 @@
             // 
             this.companyNameComboBox.Location = new System.Drawing.Point(410, 297);
             this.companyNameComboBox.Name = "companyNameComboBox";
-            this.companyNameComboBox.Size = new System.Drawing.Size(340, 21);
+            this.companyNameComboBox.Size = new System.Drawing.Size(343, 21);
             this.companyNameComboBox.TabIndex = 68;
             // 
             // groupBox2
@@ -617,9 +626,9 @@
             // 
             // btn_ileri
             // 
-            this.btn_ileri.Location = new System.Drawing.Point(297, 267);
+            this.btn_ileri.Location = new System.Drawing.Point(287, 273);
             this.btn_ileri.Name = "btn_ileri";
-            this.btn_ileri.Size = new System.Drawing.Size(43, 19);
+            this.btn_ileri.Size = new System.Drawing.Size(53, 45);
             this.btn_ileri.TabIndex = 69;
             this.btn_ileri.Text = ">";
             this.btn_ileri.UseVisualStyleBackColor = true;
@@ -627,9 +636,9 @@
             // 
             // btn_geri
             // 
-            this.btn_geri.Location = new System.Drawing.Point(147, 267);
+            this.btn_geri.Location = new System.Drawing.Point(147, 273);
             this.btn_geri.Name = "btn_geri";
-            this.btn_geri.Size = new System.Drawing.Size(44, 19);
+            this.btn_geri.Size = new System.Drawing.Size(54, 45);
             this.btn_geri.TabIndex = 70;
             this.btn_geri.Text = "<";
             this.btn_geri.UseVisualStyleBackColor = true;
@@ -654,25 +663,25 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 323);
+            this.label9.Location = new System.Drawing.Point(11, 392);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(41, 13);
+            this.label9.Size = new System.Drawing.Size(38, 13);
             this.label9.TabIndex = 73;
-            this.label9.Text = "Durum:";
+            this.label9.Text = "Mesaj:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(56, 323);
+            this.label10.Location = new System.Drawing.Point(55, 392);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(0, 13);
             this.label10.TabIndex = 74;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(194, 267);
+            this.button1.Location = new System.Drawing.Point(204, 273);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 19);
+            this.button1.Size = new System.Drawing.Size(30, 45);
             this.button1.TabIndex = 75;
             this.button1.Text = "<<";
             this.button1.UseVisualStyleBackColor = true;
@@ -680,9 +689,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(264, 267);
+            this.button2.Location = new System.Drawing.Point(254, 273);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(30, 19);
+            this.button2.Size = new System.Drawing.Size(30, 45);
             this.button2.TabIndex = 76;
             this.button2.Text = ">>";
             this.button2.UseVisualStyleBackColor = true;
@@ -784,11 +793,100 @@
             this.checkBox13.Text = "Çelik Jant";
             this.checkBox13.UseVisualStyleBackColor = true;
             // 
+            // radioButton22
+            // 
+            this.radioButton22.AutoSize = true;
+            this.radioButton22.Location = new System.Drawing.Point(70, 20);
+            this.radioButton22.Name = "radioButton22";
+            this.radioButton22.Size = new System.Drawing.Size(46, 17);
+            this.radioButton22.TabIndex = 1;
+            this.radioButton22.TabStop = true;
+            this.radioButton22.Text = "2. El";
+            this.radioButton22.UseVisualStyleBackColor = true;
+            // 
+            // radioButton23
+            // 
+            this.radioButton23.AutoSize = true;
+            this.radioButton23.Location = new System.Drawing.Point(12, 20);
+            this.radioButton23.Name = "radioButton23";
+            this.radioButton23.Size = new System.Drawing.Size(46, 17);
+            this.radioButton23.TabIndex = 0;
+            this.radioButton23.TabStop = true;
+            this.radioButton23.Text = "Yeni";
+            this.radioButton23.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radioButton24);
+            this.groupBox4.Controls.Add(this.radioButton25);
+            this.groupBox4.Controls.Add(this.checkBox2);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.radioButton22);
+            this.groupBox4.Controls.Add(this.radioButton23);
+            this.groupBox4.Location = new System.Drawing.Point(48, 327);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(705, 55);
+            this.groupBox4.TabIndex = 30;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Web";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(603, 23);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(15, 14);
+            this.checkBox2.TabIndex = 85;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(619, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 13);
+            this.label2.TabIndex = 85;
+            this.label2.Text = "Sağ Direksiyon";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(22, 350);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 2;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // radioButton24
+            // 
+            this.radioButton24.AutoSize = true;
+            this.radioButton24.Location = new System.Drawing.Point(198, 19);
+            this.radioButton24.Name = "radioButton24";
+            this.radioButton24.Size = new System.Drawing.Size(53, 17);
+            this.radioButton24.TabIndex = 87;
+            this.radioButton24.TabStop = true;
+            this.radioButton24.Text = "Klasik";
+            this.radioButton24.UseVisualStyleBackColor = true;
+            // 
+            // radioButton25
+            // 
+            this.radioButton25.AutoSize = true;
+            this.radioButton25.Location = new System.Drawing.Point(130, 19);
+            this.radioButton25.Name = "radioButton25";
+            this.radioButton25.Size = new System.Drawing.Size(53, 17);
+            this.radioButton25.TabIndex = 86;
+            this.radioButton25.TabStop = true;
+            this.radioButton25.Text = "Kazalı";
+            this.radioButton25.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(767, 345);
+            this.ClientSize = new System.Drawing.Size(764, 430);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.checkBox13);
             this.Controls.Add(this.checkBox12);
             this.Controls.Add(this.checkBox11);
@@ -860,6 +958,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.carsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.companiesBindingSource)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -937,6 +1037,14 @@
         private System.Windows.Forms.CheckBox checkBox11;
         private System.Windows.Forms.CheckBox checkBox12;
         private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.RadioButton radioButton22;
+        private System.Windows.Forms.RadioButton radioButton23;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radioButton24;
+        private System.Windows.Forms.RadioButton radioButton25;
     }
 }
 
