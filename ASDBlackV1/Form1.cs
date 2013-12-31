@@ -7,21 +7,9 @@ using System.Linq;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-//DB Addon
-using System.Data.Common;
-using System.Data.OleDb;
+using System.Data.Common; //db addon
+using System.Data.OleDb; //db addon
 
-
-/* Dosyadan Şirket dosyası seçiliyor.
-Program otomatik resimleri yüklüyor.
-İleri geri gidiliyor: açılan resimden araç bilgileri giriliyor
-kaydet diyince **TXT Create File
- * 
-Sil yok
- * 
-Değişiklik anında Kırmızı X çıkıyor
-Kaydet diyince Yeşil Tik çıkıyor.
- * */
 namespace ASDBlackV1
 {
     public partial class Form1 : Form
@@ -30,6 +18,7 @@ namespace ASDBlackV1
         int index = 0;
         int sayac;
         int max;
+        int editli;
         string sirket1;
         string sirket2;
         string sirket3;
@@ -39,8 +28,10 @@ namespace ASDBlackV1
         string resim_adi;
         string resim_title;
         string[] images;
-
+        string icerik;
+        int satir_sayisi;
         string sql_icerik;
+
         
 
         public void DataRead()
@@ -55,7 +46,6 @@ namespace ASDBlackV1
                 comboBox1.DataSource = source;
                 comboBox1.ValueMember = "BrandNo";
                 comboBox1.DisplayMember = "BrandName";
-
                 comboBox1.SelectedIndexChanged += new System.EventHandler(comboBox1_SelectedIndexChanged);
             }
 
@@ -101,8 +91,6 @@ namespace ASDBlackV1
                 companyNameComboBox.DataSource = source;
                 companyNameComboBox.ValueMember = "CompanyNo";
                 companyNameComboBox.DisplayMember = "CompanyName";
-
-
                 companyNameComboBox.SelectedIndexChanged += new System.EventHandler(companyNameComboBox_SelectedIndexChanged);
             }
 
@@ -112,34 +100,28 @@ namespace ASDBlackV1
             }
         }
 
+
         public void companyNameComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-
             System.Data.OleDb.OleDbConnection conn = new
             System.Data.OleDb.OleDbConnection();
-
             conn.ConnectionString = "Provider=Microsoft.JET.OLEDB.4.0; data source=C:\\asd.git/Cars.mdb";
 
             try
             {
-
                 sirket1 = companyNameComboBox.SelectedValue.ToString(); // ++ Tel No
-
                 OleDbCommand cmd = new OleDbCommand("SELECT * FROM Companies WHERE CompanyNo = " + sirket1, conn);
-
                 conn.Open();
 
                 using (OleDbDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-
                         //sirket1 = reader.GetValue(0).ToString();
                         sirket2 = reader.GetString(1);
                         sirket3 = reader.GetString(2);
                     }
                 }
-
               }
 
             catch (Exception ex)
@@ -161,8 +143,6 @@ namespace ASDBlackV1
             comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
             comboBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-
         }
 
         public void BindDirectoryToTreeView(string directoryPathToBind)
@@ -171,8 +151,6 @@ namespace ASDBlackV1
             treeView1.Nodes.Add(rootNode);
             RecurseFolders(directoryPathToBind, rootNode);
         }
-
-
 
         public void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
@@ -197,7 +175,7 @@ namespace ASDBlackV1
             }
         }
 
-        public void Editlimi()
+        public int Editlimi()
         {
 
             DirectoryInfo di = new DirectoryInfo(kok);
@@ -205,11 +183,20 @@ namespace ASDBlackV1
             if (TXTFiles.Length != 0)
             {
                 label10.Text = label10.Text + " // Daha önce düzenlenmiş.";
+
+                pictureBox2.Image = Image.FromFile(@"C:\asd.git\ASDBlackV1\tick.png");
+                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                editli = 1;
+                return editli;
             }
-
+            else
+            {
+                pictureBox2.Image = Image.FromFile(@"C:\asd.git\ASDBlackV1\cross.png");
+                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                editli = 0;
+                return editli;
+            }
         }
-
-
         
         public void RecurseFolders(string path, TreeNode node)
         {
@@ -233,44 +220,40 @@ namespace ASDBlackV1
                     MessageBox.Show("Hata: C:/ASD Dosyası bulunamıyor");
                     Environment.Exit(0);
                 }
-
             }
 
-            catch (UnauthorizedAccessException)
-            {
-                // TODO:  write some handler to log and/or deal with 
-                // unauthorized exception cases
-            }
-
-            foreach (var fi in dir.GetFiles().OrderBy(c => c.Name))
-                {
-                    //var fileNode = new TreeNode(fi.Name);
-                    //node.Nodes.Add(fileNode);
-                }
+            catch (UnauthorizedAccessException) { }
+            foreach (var fi in dir.GetFiles().OrderBy(c => c.Name)) { }
 
         }
 
-
+        //içerik satır sayısı kontrolü
+        public void satir_icerik_kontrol()
+        {
+            if (satir_sayisi <= 8)
+            {
+                icerik += Environment.NewLine;
+                satir_sayisi++;
+            }
+        }
 
         //Kaydet
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
             string dosya_adi = kok + resim_title;
-
-            
             string sql_name = kok;
-            string icerik;
-
-            int satir_sayisi = 0;
+            satir_sayisi = 0;
 
             dosya_adi += "." + comboBox1.Text;
-
             icerik = textBox1.Text + " Model";
             icerik += " " + comboBox1.Text;
-            icerik += " " + comboBox2.Text + Environment.NewLine;
-            sql_icerik = " Model";
+            icerik += " " + comboBox2.Text;
+            //sql
+            sql_icerik = textBox1.Text + " Model";
+            sql_icerik += " " + comboBox1.Text;
+            sql_icerik += " " + comboBox2.Text;
 
-            satir_sayisi++;
+            satir_icerik_kontrol();
 
     /*
     1	PR	Prestige
@@ -279,7 +262,6 @@ namespace ASDBlackV1
     * 	BU 	Budget - Ucuz Araçlar
     *		Kazalı Araçlar
     12	44	4x4
-
     7	MO	Motosiklet
     *	CY	Bisiklet
     6	CO	İş Araçları
@@ -291,79 +273,45 @@ namespace ASDBlackV1
     8	TO	Araç/Gereç
     13	HA	El Aletleri
     4	BO	Yat/Bot
-
     5	AT	ATV
     *	BP	Akülü Araç
     *	SM	Model Araba
     *	SP	Yedek Parça
     *	HW	Hırdavat
- 
     -------------------------------
- 
     * 	SC
-    * 	HM
-    */
+    * 	HM  */
 
             if (radioButton1.Checked) //Prestige
-            {
-                dosya_adi = dosya_adi + ".PR";
-            }
+            { dosya_adi = dosya_adi + ".PR"; sql_icerik += " PR"; }
             else if (radioButton2.Checked) //İş Makinesi
-            {
-                dosya_adi = dosya_adi + ".HC";
-            }
+            { dosya_adi = dosya_adi + ".HC"; sql_icerik += " PR"; }
             else if (radioButton3.Checked) //Jenerator
-            {
-                dosya_adi = dosya_adi + ".GE";
-            }
+            { dosya_adi = dosya_adi + ".GE"; sql_icerik += " PR"; }
             else if (radioButton4.Checked) //YatBot
-            {
-                dosya_adi = dosya_adi + ".BO";
-            }
+            { dosya_adi = dosya_adi + ".BO"; sql_icerik += " PR"; }
             else if (radioButton5.Checked) //ATV
-            {
-                dosya_adi = dosya_adi + ".AT";
-            }
+            { dosya_adi = dosya_adi + ".AT"; sql_icerik += " PR"; }
             else if (radioButton6.Checked) //İş Makinesi
-            {
-                dosya_adi = dosya_adi + ".CO";
-            }
+            { dosya_adi = dosya_adi + ".CO"; sql_icerik += " PR"; }
             else if (radioButton7.Checked) //Motosiklet
-            {
-                dosya_adi = dosya_adi + ".MO";
-            }
+            { dosya_adi = dosya_adi + ".MO"; sql_icerik += " PR"; }
             else if (radioButton8.Checked) // AraçGereç
-            {
-                dosya_adi = dosya_adi + ".TO";
-            }
+            { dosya_adi = dosya_adi + ".TO"; sql_icerik += " PR"; }
             else if (radioButton9.Checked) //Ağır İş
-            {
-                dosya_adi = dosya_adi + ".HC";
-            }
+            { dosya_adi = dosya_adi + ".HC"; sql_icerik += " PR"; }
             else if (radioButton10.Checked) //Prestige 4x4
-            {
-                dosya_adi = dosya_adi + ".P4";
-            }
+            { dosya_adi = dosya_adi + ".P4"; sql_icerik += " PR"; }
             else if (radioButton11.Checked) //Traktör
-            {
-                dosya_adi = dosya_adi + ".TR";
-            }
+            { dosya_adi = dosya_adi + ".TR"; sql_icerik += " PR"; }
             else if (radioButton12.Checked) //4x4
-            {
-                dosya_adi = dosya_adi + ".44";
-            }
+            { dosya_adi = dosya_adi + ".44"; sql_icerik += " PR"; }
             else if (radioButton13.Checked) //El Aletleri
-            {
-                dosya_adi = dosya_adi + ".XX";
-            }
+            { dosya_adi = dosya_adi + ".XX"; sql_icerik += " PR"; }
             else if (radioButton14.Checked) //Tarım
-            {
-                dosya_adi = dosya_adi + ".FA";
-            }
+            { dosya_adi = dosya_adi + ".FA"; sql_icerik += " PR"; }
             else if (radioButton15.Checked) //Araçlar
-            {
-                dosya_adi = dosya_adi + ".VE";
-            }
+            { dosya_adi = dosya_adi + ".VE"; sql_icerik += " PR"; }
 
             else
             {
@@ -372,142 +320,226 @@ namespace ASDBlackV1
             }
 
             // Kapı Sayısı
-            icerik += textBox6.Text + " Kapı";
+            if (textBox6.Text != "")
+            {
+                icerik += textBox6.Text + " Kapı, ";
+                //sql
+                sql_icerik += textBox6.Text + " Kapı, ";
+            }
 
-            //
             //Yakıt -> Benzin | Mazot | Hybrid
-            //
             if (radioButton16.Checked)
             {
-                icerik += ", Benzin";
+                icerik += "Benzin, ";
+                //sql
+                sql_icerik += " Benzin, ";
             }
             else if (radioButton17.Checked)
             {
-                icerik += ", Mazot";
+                icerik += "Mazot, ";
+                //sql
+                sql_icerik += " Mazot, ";
             }
             else if (radioButton18.Checked)
             {
-                icerik += ", Hybrid";
-            }
-            else
-            {
-                hata = true;
-                MessageBox.Show("Yakıt Tipi Seçin!!!");
+                icerik += "Hybrid, ";
+                //sql
+                sql_icerik += " Hybrid, ";
             }
 
-
-            //
             //Vites -> Manuel | Otomatik | Triptonik
-            //
             if (radioButton19.Checked)
             {
-                icerik += ", Triptonik" + Environment.NewLine; satir_sayisi++;
+                icerik += "Triptonik, "; satir_icerik_kontrol();
+                //sql
+                sql_icerik += " Triptonik, ";
             }
             else if (radioButton20.Checked)
             {
-                icerik += ", Otomatik" + Environment.NewLine; satir_sayisi++;
+                icerik += "Otomatik, "; satir_icerik_kontrol();
+                //sql
+                sql_icerik += " Otomatik, ";
             }
             else if (radioButton21.Checked)
             {
-                icerik += ", Manuel" + Environment.NewLine; satir_sayisi++;
+                icerik += "Manuel, "; satir_icerik_kontrol();
+                //sql
+                sql_icerik += " Manuel, ";
             }
-            else
-            {
-                hata = true;
-                MessageBox.Show("Vites Tipi Seçin!!!");
-            };
-
-
-            //
-            // Özellikler
-            //
             
+            // Özellikler            
             int ozellik_sayisi = 0;
             int ozellik_artis = 0;
 
-            if (checkBox4.Checked) { icerik += "H. Direksiyon"; ozellik_sayisi++; ozellik_artis = 1; }
-            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
-            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
-            ozellik_artis = 0;
-
-            if (checkBox5.Checked) { icerik += "AirBag"; ozellik_sayisi++; ozellik_artis = 1; }
-            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
-            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
-            ozellik_artis = 0;
-
-            if (checkBox6.Checked) { icerik += "Klima"; ozellik_sayisi++; ozellik_artis = 1; }
-            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
-            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
-            ozellik_artis = 0;
-
-            if (checkBox7.Checked) { icerik += "M. Kilit"; ozellik_sayisi++; ozellik_artis = 1; }
-            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
-            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
-            ozellik_artis = 0;
-
-            if (checkBox8.Checked) { icerik += "Full"; ozellik_sayisi++; ozellik_artis = 1; }
-            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
-            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
-            ozellik_artis = 0;
-
-            if (checkBox9.Checked) { icerik += "Extra"; ozellik_sayisi++; ozellik_artis = 1; }
-            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
-            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
-            ozellik_artis = 0;
-
-            if (checkBox10.Checked) { icerik += "SunRoof"; ozellik_sayisi++; ozellik_artis = 1; }
-            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
-            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
-            ozellik_artis = 0;
-
-            if (checkBox11.Checked) { icerik += "Deri Koltuk"; ozellik_sayisi++; ozellik_artis = 1; }
-            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
-            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
-            ozellik_artis = 0;
-
-            if (checkBox12.Checked) { icerik += "Park Sensörü"; ozellik_sayisi++; ozellik_artis = 1; }
-            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
-            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
-            ozellik_artis = 0;
-
-            if (checkBox13.Checked) { icerik += "Çelik Jant"; ozellik_sayisi++; ozellik_artis = 1; }
-            if (ozellik_sayisi % 2 != 0 && ozellik_artis == 1) { icerik += ", "; }
-            else if (ozellik_artis == 1) { icerik += Environment.NewLine; satir_sayisi++; }
-            ozellik_artis = 0;
-            //
-            //cc
-            //
-
-            if (textBox2.Text.Trim().Length != 0)
+            if (checkBox4.Checked)
             {
-                icerik +=  textBox2.Text + " cc Motor" + Environment.NewLine; satir_sayisi++;
+                icerik += "H. Direksiyon"; ozellik_sayisi++; ozellik_artis = 1;
+                //sql
+                sql_icerik += " H. Direksiyon, ";
             }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); }
+            ozellik_artis = 0;
+
+            if (checkBox5.Checked) { icerik += "AirBag"; ozellik_sayisi++; ozellik_artis = 1;
+            //sql
+            sql_icerik += " AirBag, ";
+            }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); }
+            ozellik_artis = 0;
+
+            if (checkBox6.Checked) { icerik += "Klima"; ozellik_sayisi++; ozellik_artis = 1;
+            //sql
+            sql_icerik += " Klima, ";
+            }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); }
+            ozellik_artis = 0;
+
+            if (checkBox7.Checked) { icerik += "M. Kilit"; ozellik_sayisi++; ozellik_artis = 1;
+            //sql
+            sql_icerik += "M. Kilit, ";
+            }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); }
+            ozellik_artis = 0;
+
+            if (checkBox8.Checked) { icerik += "Full"; ozellik_sayisi++; ozellik_artis = 1;
+            //sql
+            sql_icerik += " Full, ";
+            }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); /*icerik += Environment.NewLine; satir_sayisi++;*/ }
+            ozellik_artis = 0;
+
+            if (checkBox9.Checked) { icerik += "Extra"; ozellik_sayisi++; ozellik_artis = 1;
+            //sql
+            sql_icerik += " Extra, ";
+            }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); }
+            ozellik_artis = 0;
+
+            if (checkBox10.Checked) { icerik += "SunRoof"; ozellik_sayisi++; ozellik_artis = 1;
+            //sql
+            sql_icerik += " SunRoof, ";
+            }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); }
+            ozellik_artis = 0;
+
+            if (checkBox11.Checked) { icerik += "Deri Koltuk"; ozellik_sayisi++; ozellik_artis = 1;
+            //sql
+            sql_icerik += " Deri Koltuk, ";
+            }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); }
+            ozellik_artis = 0;
+
+            if (checkBox12.Checked) { icerik += "Park Sensörü"; ozellik_sayisi++; ozellik_artis = 1;
+            //sql
+            sql_icerik += " Park Sensörü, ";
+            }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); }
+            ozellik_artis = 0;
+
+            if (checkBox13.Checked) { icerik += "Çelik Jant"; ozellik_sayisi++; ozellik_artis = 1;
+            //sql
+            sql_icerik += " Çelik Jant, ";
+            }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); }
+            ozellik_artis = 0;
+
+            if (checkBox2.Checked) { icerik += "Sol Direksiyon"; ozellik_sayisi++; ozellik_artis = 1;
+            //sql
+            sql_icerik += " Sol Direksiyon, ";
+            }
+            if (ozellik_sayisi % 3 != 0 && ozellik_artis == 1) { icerik += ", "; }
+            else if (ozellik_artis == 1) { satir_icerik_kontrol(); }
+            ozellik_artis = 0;
+
+            //cc km etc
+            if (textBox2.Text.Trim().Length != 0)
+            { icerik += textBox2.Text + " cc Motor"; satir_icerik_kontrol();
+            sql_icerik += " cc Motor, "; }
 
             if (textBox3.Text.Trim().Length != 0)
-            {
-                icerik += textBox3.Text + " Km" + Environment.NewLine; satir_sayisi++;
-            }
+            { icerik += textBox3.Text + " Km"; satir_icerik_kontrol();
+            sql_icerik += " km, ";}
 
             if (textBox5.Text.Trim().Length != 0)
-            {
-                icerik += textBox5.Text.ToUpper() + Environment.NewLine; satir_sayisi++;
-            }
+            { icerik += textBox5.Text.ToUpper(); satir_icerik_kontrol(); }
 
             // Satır Sayısı Eşitleme
-            for(int i=satir_sayisi; i<8; i++) { icerik += Environment.NewLine; }
+            for (int i = satir_sayisi; i < 8; i++) { icerik += Environment.NewLine; satir_sayisi++; }
 
             //Şirket Adı
-            icerik += sirket2 + Environment.NewLine + sirket3 + Environment.NewLine; satir_sayisi +=2 ;
+            icerik += sirket2 + Environment.NewLine + "Tel:" + sirket3 + Environment.NewLine;
+            sql_icerik += sirket2 + "Tel:" + sirket3;
+
+            satir_sayisi +=2 ;
+
+            /*
+INSERT INTO   araclar  (kategoriKod, kasaKod, modelKod, durumKod, vitesKod, yakitKod, airbag, hdrDireksiyon, klima, merkeziKilit, full, extra, deriKoltuk, sunroof, parkSensoru, celikJant, sagDireksiyon, modelTarihi, silindirHacmi, km, kapiSayisi, fiyat, paraBirimiKod, aciklama, kullanici) VALUES ({$kategoriKod}, {$kasa}, {$modelKod}, {$durumKod}, {$vitesKod}, {$yakitKod}, {$airbag}, {$hdrDireksiyon}, {$klima}, {$merkeziKilit}, {$full}, {$extra}, {$deriKoltuk}, {$sunroof}, {$parkSensoru}, {$celikJant}, {$sagDireksiyon}, {$modelTarihi}, {$silindirHacmi}, {$km}, {$kapiSayisi}, {$fiyat}, {$paraBirimi}, {$aciklama}, {$kullanici})
+
+VALUES (
+{$kategoriKod}, //motor otomobil ticari araç
+{$kasa}
+8  Cabriolet  
+7  Coupe  
+13  Diğer  
+5  Hatchback  
+10  Jeep  
+12  Kamyon  
+11  Minibüs  
+9  Pick-Up  
+1  Sedan  
+6  Stationwagon  
+16  SUV  
+14  Van  
+
+{$modelKod}, //marka içinde
+
+{$durumKod}, //1-ikinci el - 2-Yeni - 3-Kazalı 5-Klasik
+
+{$vitesKod}, //12.manuel - 19.multitronic - 11.otomatik - 14.triptonic
+{$yakitKod},
+
+{$airbag},
+{$hdrDireksiyon},
+{$klima},
+{$merkeziKilit},
+{$full}, 
+{$extra},
+{$deriKoltuk},
+{$sunroof},
+{$parkSensoru},
+{$celikJant},
+{$sagDireksiyon}, //1sag 2sol
+
+{$modelTarihi},
+{$silindirHacmi},
+{$km},
+{$kapiSayisi},
+{$fiyat},
+{$paraBirimi}, 1.STG  2.EURO  3.USD  4.TL
+
+{$aciklama},
+
+{$kullanici}
+)*/
 
 
-            //
             //fiyat
-            //
             if (textBox4.Text != String.Empty)
             {
                 double fiyat = Convert.ToInt32(textBox4.Text);
                 string fiyatstr = fiyat.ToString("N0");
                 icerik += fiyatstr + " " + comboBox4.Text;
+                sql_icerik += fiyatstr + " " + comboBox4.Text;
             }
 
             else
@@ -523,163 +555,27 @@ namespace ASDBlackV1
                 writer.WriteLine(icerik);
                 writer.Close();
 
-                System.IO.StreamWriter sqlwriter;
-                sql_name = sql_name + "commands.sql";
-                sqlwriter = new System.IO.StreamWriter(sql_name, false, System.Text.Encoding.Default);
-                sqlwriter.WriteLine(sql_icerik);
-                sqlwriter.Close();
+                if (checkBox1.Checked) //web tik
+                {
+                    System.IO.StreamWriter sqlwriter;
+                    sql_name = sql_name + "commands.sql";
+                    sqlwriter = new System.IO.StreamWriter(sql_name, true, System.Text.Encoding.Default);
+                    sqlwriter.WriteLine(sql_icerik);
+                    sqlwriter.Close();
+                }   
 
-                label10.Text = resim_adi + " kaydedildi.";
-                ClearTextBoxes();
+                /* INSERT INTO araclar (kategoriKod, kasaKod, modelKod, durumKod, vitesKod, yakitKod, airbag, hdrDireksiyon, klima, merkeziKilit, full, extra, deriKoltuk, sunroof, parkSensoru, celikJant, sagDireksiyon, modelTarihi, silindirHacmi, km, kapiSayisi, fiyat, paraBirimiKod, aciklama, kullanici) VALUES ({$kategoriKod}, {$kasa}, {$modelKod}, {$durumKod}, {$vitesKod}, {$yakitKod}, {$airbag}, {$hdrDireksiyon}, {$klima}, {$merkeziKilit}, {$full}, {$extra}, {$deriKoltuk}, {$sunroof}, {$parkSensoru}, {$celikJant}, {$sagDireksiyon}, {$modelTarihi}, {$silindirHacmi}, {$km}, {$kapiSayisi}, {$fiyat}, {$paraBirimi}, {$aciklama}, {$kullanici}) */
+
+                    label10.Text = resim_adi + " kaydedildi.";
+                    pictureBox2.Image = Image.FromFile(@"C:\asd.git\ASDBlackV1\tick.png");
+                    pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                    ClearTextBoxes();
 
             }
 
             hata = false;
         }
 
-
-        /*
-         * $kod=mysql_real_escape_string($_POST["hdnKod"]);
-$isim=mysql_real_escape_string($_POST["txtIsim"]);
-$modelTarihi=mysql_real_escape_string($_POST["cmbModelYil"]);
-$durumKod=mysql_real_escape_string($_POST["cmbDurum"]);
-$aciklama=mysql_real_escape_string($_POST["txtAciklama"]);
-$fiyat=mysql_real_escape_string($_POST["txtFiyat"]);
-$yakitKod=mysql_real_escape_string($_POST["cmbYakit"]);
-$kapiSayisi=mysql_real_escape_string($_POST["cmbKapi"]);
-$guc=mysql_real_escape_string($_POST["txtGuc"]);
-$vitesKod=mysql_real_escape_string($_POST["cmbVites"]);
-$bgjHacmi=mysql_real_escape_string($_POST["txtBgjHacmi"]);
-$agirlik=mysql_real_escape_string($_POST["txtAgirlik"]);
-$kategoriKod=mysql_real_escape_string($_POST["cmbKategori"]);
-$modelKod=mysql_real_escape_string($_POST["cmbModel"]);
-
-$silindirHacmi=mysql_real_escape_string($_POST["txtSilindirHacmi"]);
-$motorGucu=mysql_real_escape_string($_POST["txtMotorGucu"]);
-$sagDireksiyon=mysql_real_escape_string($_POST["chkSagDireksiyon"]);
-$km=mysql_real_escape_string($_POST["txtKm"]);
-$cdPlayer=mysql_real_escape_string($_POST["chkCdPlayer"]);
-$otoCamOn=mysql_real_escape_string($_POST["chkOtoCamOn"]);
-$otoCamArka=mysql_real_escape_string($_POST["chkOtoCamArka"]);
-$esp=mysql_real_escape_string($_POST["chkEsp"]);
-$klima=mysql_real_escape_string($_POST["chkKlima"]);
-$navigasyon=mysql_real_escape_string($_POST["chkNavigasyon"]);
-$parkSensoru=mysql_real_escape_string($_POST["chkParkSensoru"]);
-$radyoKaset=mysql_real_escape_string($_POST["chkRadyoKaset"]);
-$camTavan=mysql_real_escape_string($_POST["chkCamTavan"]);
-$hdrDireksiyon=mysql_real_escape_string($_POST["chkHdrDireksiyon"]);
-$merkeziKilit=mysql_real_escape_string($_POST["chkMerkeziKilit"]);
-$sabitHizKontrolu=mysql_real_escape_string($_POST["chkSabitHizKontrolu"]);
-$xenonFar=mysql_real_escape_string($_POST["chkXenonFar"]);
-$katalysator=mysql_real_escape_string($_POST["chkKatalysator"]);
-$otoAyna=mysql_real_escape_string($_POST["chkOtoAyna"]);
-$deriKoltuk=mysql_real_escape_string($_POST["chkDeriKoltuk"]);
-$airbag=mysql_real_escape_string($_POST["chkAirbag"]);
-$airbag2=mysql_real_escape_string($_POST["chkAirbag2"]);
-$alarm=mysql_real_escape_string($_POST["chkAlarm"]);
-$fourByFour=mysql_real_escape_string($_POST["chkFourByFour"]);
-$celikJant=mysql_real_escape_string($_POST["chkCelikJant"]);
-$sunroof=mysql_real_escape_string($_POST["chkSunroof"]);
-$aracTelefonu=mysql_real_escape_string($_POST["chkAracTelefonu"]);
-$yolBilgisayari=mysql_real_escape_string($_POST["chkYolBilgisayari"]);
-$paraBirimi=mysql_real_escape_string($_POST["cmbParaBirimi"]);
-$kasa=mysql_real_escape_string($_POST["cmbKasa"]);
-$renk=mysql_real_escape_string($_POST["cmbRenk"]);
-         * 
-         * $sql="INSERT INTO   araclar  ( ";
-    $sql.="isim,  ";
-    $sql.="modelTarihi,  ";
-    $sql.="durumKod,  ";
-    $sql.="aciklama,  ";
-    $sql.="fiyat,  ";
-    $sql.="yakitKod,  ";
-    $sql.="kapiSayisi,  ";
-    $sql.="guc,  ";
-    $sql.="vitesKod,  ";
-    $sql.="bgjHacmi,  ";
-    $sql.="agirlik,  ";
-    $sql.="kategoriKod,  ";
-    $sql.="modelKod,  ";
-    $sql.="silindirHacmi,  ";
-    $sql.="motorGucu,  ";
-    $sql.="sagDireksiyon,  ";
-    $sql.="km,  ";
-    $sql.="cdPlayer,  ";
-    $sql.="otoCamOn,  ";
-    $sql.="otoCamArka,  ";
-    $sql.="esp,  ";
-    $sql.="klima,  ";
-    $sql.="navigasyon,  ";
-    $sql.="parkSensoru,  ";
-    $sql.="radyoKaset,  ";
-    $sql.="camTavan,  ";
-    $sql.="hdrDireksiyon,  ";
-    $sql.="merkeziKilit,  ";
-    $sql.="sabitHizKontrolu,  ";
-    $sql.="xenonFar,  ";
-    $sql.="katalysator,  ";
-    $sql.="otoAyna,  ";
-    $sql.="deriKoltuk,  ";
-    $sql.="airbag,  ";
-    $sql.="airbag2,  ";
-    $sql.="alarm,  ";
-    $sql.="fourByFour,  ";
-    $sql.="celikJant,  ";
-    $sql.="sunroof,  ";
-    $sql.="aracTelefonu,  ";
-    $sql.="yolBilgisayari,  ";
-    $sql.="kullaniciKod, ";
-    $sql.="paraBirimiKod, ";
-    $sql.="kasaKod, ";
-    $sql.="renkKod ";
-    $sql.=") VALUES ("; 
-    $sql.="\"{$isim}\",";
-    $sql.="{$modelTarihi},";
-    $sql.="{$durumKod},";
-    $sql.="\"{$aciklama}\",";
-    $sql.="{$fiyat},";
-    $sql.="{$yakitKod},";
-    $sql.="{$kapiSayisi},";
-    $sql.="{$guc},";
-    $sql.="{$vitesKod},";
-    $sql.="{$bgjHacmi},";
-    $sql.="{$agirlik},";
-    $sql.="{$kategoriKod},";
-    $sql.="{$modelKod},";
-    $sql.="{$silindirHacmi},";
-    $sql.="{$motorGucu},";
-    $sql.="{$sagDireksiyon},";
-    $sql.="{$km},";
-    $sql.="{$cdPlayer},";
-    $sql.="{$otoCamOn},";
-    $sql.="{$otoCamArka},";
-    $sql.="{$esp},";
-    $sql.="{$klima},";
-    $sql.="{$navigasyon},";
-    $sql.="{$parkSensoru},";
-    $sql.="{$radyoKaset},";
-    $sql.="{$camTavan},";
-    $sql.="{$hdrDireksiyon},";
-    $sql.="{$merkeziKilit},";
-    $sql.="{$sabitHizKontrolu},";
-    $sql.="{$xenonFar},";
-    $sql.="{$katalysator},";
-    $sql.="{$otoAyna},";
-    $sql.="{$deriKoltuk},";
-    $sql.="{$airbag},";
-    $sql.="{$airbag2},";
-    $sql.="{$alarm},";
-    $sql.="{$fourByFour},";
-    $sql.="{$celikJant},";
-    $sql.="{$sunroof},";
-    $sql.="{$aracTelefonu},";
-    $sql.="{$yolBilgisayari},";
-    $sql.="{$sec->code},";
-    $sql.="{$paraBirimi},";
-    $sql.="{$kasa},";
-    $sql.="{$renk}";
-    $sql.=")";
-*/
 
         private void ClearTextBoxes()
         {
@@ -703,28 +599,7 @@ $renk=mysql_real_escape_string($_POST["cmbRenk"]);
             func(Controls);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'carsDataSet.Companies' table. You can move, or remove it, as needed.
-            //this.companiesTableAdapter.Fill(this.carsDataSet.Companies);
-            // TODO: This line of code loads data into the 'carsDataSet.Models' table. You can move, or remove it, as needed.
-            //this.modelsTableAdapter.Fill(this.carsDataSet.Models);
-            // TODO: This line of code loads data into the 'carsDataSet.Cars' table. You can move, or remove it, as needed.
-            //this.carsTableAdapter.Fill(this.carsDataSet.Cars);
-        }
-
-        /*private void fillByToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.companiesTableAdapter.FillBy(this.carsDataSet.Companies);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }*/
+        private void Form1_Load(object sender, EventArgs e) { }
 
         private void btn_ileri_Click(object sender, EventArgs e)
         {
@@ -745,6 +620,29 @@ $renk=mysql_real_escape_string($_POST["cmbRenk"]);
             {
                 label10.Text = "Dosyada başka araç yok";
             }
+        }
+
+
+        private void btn_red_Click(object sender, EventArgs e)
+        {
+            for (int i = sayac; i < max; i++)
+            {
+                index++;
+                sayac++;
+                if (Editlimi() == 0)
+                {
+                    MessageBox.Show("Break" + index.ToString() + " / " + sayac.ToString());
+                    break;
+                }
+            }
+
+            pictureBox1.Image = new Bitmap(images[index]);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
+            resim_adi = images[index].Replace(kok, "");
+            resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
+            label10.Text = resim_title + " düzenleniyor.";
+            Editlimi();
         }
 
         private void btn_geri_Click(object sender, EventArgs e)
@@ -768,6 +666,7 @@ $renk=mysql_real_escape_string($_POST["cmbRenk"]);
             }
         }
 
+
         private void checkBox8_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox8.Checked)
@@ -778,14 +677,6 @@ $renk=mysql_real_escape_string($_POST["cmbRenk"]);
                 checkBox7.Checked = true;
             }
         }
-        /*
-        private void brandNameComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void modelNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }*/
 
         private void button1_Click_1(object sender, EventArgs e)
         {
