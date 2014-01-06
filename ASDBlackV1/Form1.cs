@@ -187,13 +187,16 @@ namespace ASDBlackV1
                 pictureBox2.Image = Image.FromFile(@"C:\asd.git\ASDBlackV1\tick.png");
                 pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
                 editli = 1;
+                //MessageBox.Show("Editli: " + editli.ToString() + " Label: " + label10.Text);
                 return editli;
+
             }
             else
             {
                 pictureBox2.Image = Image.FromFile(@"C:\asd.git\ASDBlackV1\cross.png");
                 pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
                 editli = 0;
+                //MessageBox.Show("Editli: " + editli.ToString());
                 return editli;
             }
         }
@@ -627,22 +630,25 @@ VALUES (
         {
             for (int i = sayac; i < max; i++)
             {
-                index++;
-                sayac++;
+                //MessageBox.Show("Durum: " + index.ToString() + " / " + sayac.ToString());
+                pictureBox1.Image = new Bitmap(images[index]);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
+                resim_adi = images[index].Replace(kok, "");
+                resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
+                label10.Text = resim_title + " düzenleniyor.";
+
                 if (Editlimi() == 0)
                 {
-                    MessageBox.Show("Break" + index.ToString() + " / " + sayac.ToString());
+
+                    //MessageBox.Show("Break: " + index.ToString() + " / " + sayac.ToString());
                     break;
                 }
-            }
 
-            pictureBox1.Image = new Bitmap(images[index]);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            label1.Text = "Index: " + sayac.ToString("00") + " / " + images.Length.ToString("00");
-            resim_adi = images[index].Replace(kok, "");
-            resim_title = resim_adi.Remove((resim_adi.Length - 4), 4);
-            label10.Text = resim_title + " düzenleniyor.";
-            Editlimi();
+                index++;
+                sayac++;
+
+            }
         }
 
         private void btn_geri_Click(object sender, EventArgs e)
